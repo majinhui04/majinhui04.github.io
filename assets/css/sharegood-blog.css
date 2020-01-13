@@ -1,0 +1,14 @@
+/* .article-entry h4 {
+    position: relative;
+    border-bottom: 1px solid transparent;
+} */
+.article-inner h4 {
+    letter-spacing: normal;
+    text-transform: none;
+}
+.article-entry li code, .article-entry p code, code {
+    color: #e83e8c;
+    word-wrap: break-word;
+    background: none;
+    border: none;
+}
