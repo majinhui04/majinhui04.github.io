@@ -1,6 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[每日一题：如何处理Promise并发限流]]></title>
+    <url>%2F2020%2F02%2F17%2FPromise-map%2F</url>
+    
+      <content type="text"><![CDATA[提问大家应该都经历过这么一个场景，当我们使用微博或者写文章的时候，网站允许我们一次性选择多个图片进行上传，或者当我们写爬虫的时候都需要用并发来提高效率，那么问题来了，因为并发数过大会影响服务器的性能，因此需要限流。那我们如何实现并发的同时又限制个数呢？请实现一个Promise.map方法 先思考一下下…….. 回答设计成 Bluebird（npm包） 的 API，是比较模块化，也是易于使用的。代码的关键在于维护一个队列，当超过限定数量的 Promise 时，则交与队列维护。代码如下 123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051class Limit &#123; constructor (n) &#123; this.limit = n this.count = 0 this.queue = [] &#125; enqueue (fn) &#123; // 关键代码: fn, resolve, reject 统一管理 return new Promise((resolve, reject) =&gt; &#123; this.queue.push(&#123; fn, resolve, reject &#125;) &#125;) &#125; dequeue () &#123; if (this.count &lt; this.limit &amp;&amp; this.queue.length) &#123; // 等到 Promise 计数器小于阈值时，则出队执行 const &#123; fn, resolve, reject &#125; = this.queue.shift() this.run(fn).then(resolve).catch(reject) &#125; &#125; // async/await 简化错误处理 async run (fn) &#123; this.count++ // 维护一个计数器 const value = await fn() this.count-- // 执行完，看看队列有东西没 this.dequeue() return value &#125; build (fn) &#123; if (this.count &lt; this.limit) &#123; // 如果没有到达阈值，直接执行 return this.run(fn) &#125; else &#123; // 如果超出阈值，则先扔到队列中，等待有空闲时执行 return this.enqueue(fn) &#125; &#125;&#125;// concurrency 并发数目Promise.map = function (list, fn, &#123; concurrency &#125;) &#123; const limit = new Limit(concurrency) return Promise.all(list.map((...args) =&gt; &#123; return limit.build(() =&gt; fn(...args)) &#125;))&#125; 课外题：自己实现一个Promise.all函数]]></content>
+    
+      <categories>
+        <category>前端</category>
+      </categories>
+      <tags>
+        <tag>前端</tag>
+        <tag>javascript</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[2020史上最全的web前端资源整合]]></title>
     <url>%2F2020%2F02%2F10%2Fweb-frontend-resource%2F</url>
     
