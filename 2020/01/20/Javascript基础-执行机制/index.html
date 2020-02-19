@@ -89,7 +89,7 @@
 <meta property="og:description" content="try 里面放 return，finally 里的代码会不会执行，理解其内部机制会执行,在方法返回给调用者前执行,因为如果存在finally代码块,try中的return语句不会立马返回给调用者,而是记录下返回值待finally代码块执行完毕之后再返回; 123456789101112&#x2F;&#x2F; return 执行了但是没有立即返回，而是先执行了 finallyfunction kaimo() &amp;#12">
 <meta property="og:image" content="https://tva1.sinaimg.cn/large/006tNbRwly1gb3dt2bp73j30jq0kt0sv.jpg">
 <meta property="article:published_time" content="2020-01-20T02:50:14.000Z">
-<meta property="article:modified_time" content="2020-01-20T14:27:11.000Z">
+<meta property="article:modified_time" content="2020-02-19T02:53:50.000Z">
 <meta property="article:author" content="Ma JinHui">
 <meta property="article:tag" content="JavaScript">
 <meta name="twitter:card" content="summary">
@@ -335,8 +335,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2020-01-20T22:27:11+08:00">
-                2020-01-20
+              <time title="更新于" itemprop="dateModified" datetime="2020-02-19T10:53:50+08:00">
+                2020-02-19
               </time>
             
           </span>
@@ -431,6 +431,7 @@
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// return 执行了但是没有立即返回，而是先执行了 finally</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">kaimo</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">try</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">  &#125; <span class="keyword">catch</span> (err) &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(err)</span><br><span class="line">  &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'a'</span>)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(kaimo()) <span class="comment">// a 0</span></span><br></pre></td></tr></table></figure>
 
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// finally 中的 return 覆盖了 try 中的 return。</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">kaimo</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">try</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">  &#125; <span class="keyword">catch</span> (err) &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(err)</span><br><span class="line">  &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">1</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(kaimo()) <span class="comment">// 1</span></span><br></pre></td></tr></table></figure>
+<a id="more"></a>
 
 <p><strong>注意</strong><br>1、不管有木有出现异常，<code>finally</code> 块中代码都会执行；<br>2、当 <code>try</code> 和 <code>catch</code> 中有 <code>return</code> 时，<code>finally</code> 仍然会执行；<br>3、<code>finally</code> 是在 <code>return</code> 后面的表达式运算后执行的（此时并没有返回运算后的值，而是先把要返回的值保存起来，不管 <code>finally</code> 中的代码怎么样，返回的值都不会改变，任然是之前保存的值），所以函数返回值是在 <code>finally</code> 执行前确定的；<br>4、<code>finally</code> 中最好不要包含 <code>return</code>，否则程序会提前退出，返回值不是 <code>try</code> 或 <code>catch</code> 中保存的返回值。</p>
 <blockquote>
@@ -654,7 +655,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-count">12</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -665,7 +666,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-count">3</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -676,7 +677,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-count">10</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -750,7 +751,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">18.6k</span>
+    <span title="Site words total count">19.5k</span>
   
 </div>
 

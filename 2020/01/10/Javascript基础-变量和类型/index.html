@@ -91,7 +91,7 @@
 <meta property="og:image" content="https://tva1.sinaimg.cn/large/006tNbRwly1gart02umn5j31hc0u0af6.jpg">
 <meta property="og:image" content="https://tva1.sinaimg.cn/large/006tNbRwly1gart0gd8c0j31hc0u0teb.jpg">
 <meta property="article:published_time" content="2020-01-10T13:17:14.000Z">
-<meta property="article:modified_time" content="2020-01-10T14:30:27.000Z">
+<meta property="article:modified_time" content="2020-02-19T02:53:31.000Z">
 <meta property="article:author" content="Ma JinHui">
 <meta property="article:tag" content="JavaScript">
 <meta name="twitter:card" content="summary">
@@ -337,8 +337,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2020-01-10T22:30:27+08:00">
-                2020-01-10
+              <time title="更新于" itemprop="dateModified" datetime="2020-02-19T10:53:31+08:00">
+                2020-02-19
               </time>
             
           </span>
@@ -431,6 +431,8 @@
       
         <h3 id="变量和类型"><a href="#变量和类型" class="headerlink" title="变量和类型"></a>变量和类型</h3><h4 id="JavaScript规定了几种语言类型"><a href="#JavaScript规定了几种语言类型" class="headerlink" title="JavaScript规定了几种语言类型"></a><code>JavaScript</code>规定了几种语言类型</h4><p><code>Undefined</code> <code>Null</code> <code>Boolean</code> <code>String</code> <code>Number</code> <code>Symbol</code> <code>Object</code></p>
 <h4 id="为什么有的编程规范要求用-void-0-代替-undefined？"><a href="#为什么有的编程规范要求用-void-0-代替-undefined？" class="headerlink" title="为什么有的编程规范要求用 void 0 代替 undefined？"></a>为什么有的编程规范要求用 void 0 代替 undefined？</h4><p> <code>undefined</code>是全局对象的一个属性，也就是说，它是全局作用域中的一个变量，undefined的最初值就是原始数据类型<code>undefined</code>。ES5之后的标准中，规定了全局变量下的<code>undefined</code>值为只读，不可改写的，但是局部变量中依然可以对之进行改写。而<code>void 0</code>无论什么时候都是返回<code>undefined</code>，这样来看，使用<code>void 0</code>来代替<code>undefined</code>就比较稳妥，不会出错</p>
+ <a id="more"></a>
+
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(<span class="built_in">window</span>.undefined == <span class="keyword">void</span> <span class="number">0</span>); <span class="comment">// true</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">changeUndefined</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> <span class="literal">undefined</span> = <span class="number">1</span>;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="literal">undefined</span>);</span><br><span class="line">&#125;</span><br><span class="line">changeUndefined(); <span class="comment">// 1</span></span><br></pre></td></tr></table></figure>
 
 <h4 id="JavaScript对象的底层数据结构是什么"><a href="#JavaScript对象的底层数据结构是什么" class="headerlink" title="JavaScript对象的底层数据结构是什么"></a><code>JavaScript</code>对象的底层数据结构是什么</h4><p>js基本类型数据都是直接按值存储在栈中的(Undefined、Null、不是new出来的布尔、数字和字符串)，每种类型的数据占用的内存空间的大小是确定的，并由系统自动分配和自动释放。这样带来的好处就是，内存可以及时得到回收，相对于堆来说，更加容易管理内存空间。</p>
@@ -733,7 +735,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-count">12</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -744,7 +746,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-count">3</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -755,7 +757,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-count">10</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -829,7 +831,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">18.6k</span>
+    <span title="Site words total count">19.5k</span>
   
 </div>
 
