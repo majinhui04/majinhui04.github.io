@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.barebear.cn/"/>
-  <updated>2020-02-20T09:20:43.000Z</updated>
+  <updated>2020-02-20T09:41:26.000Z</updated>
   <id>http://www.barebear.cn/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>js 中一些意想不到的使用技巧（持续更新，欢迎补充）</title>
+    <link href="http://www.barebear.cn/2020/02/20/npm/1/"/>
+    <id>http://www.barebear.cn/2020/02/20/npm/1/</id>
+    <published>2020-02-20T09:40:56.000Z</published>
+    <updated>2020-02-20T09:41:26.000Z</updated>
+    
+    <content type="html"><![CDATA[<p><img src="https://tva1.sinaimg.cn/large/0082zybply1gc306takvvj30ui0gqgnh.jpg" alt=""></p><a id="more"></a><h2 id="npm-常用命令"><a href="#npm-常用命令" class="headerlink" title="npm 常用命令"></a>npm 常用命令</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line">npm view moduleNames 或 npm info moduleNames：查看模块的注册信息</span><br><span class="line"></span><br><span class="line">npm list 或 npm ll 或 npm la 或 npm l：查看所有已经安装的模块</span><br><span class="line"></span><br><span class="line">npm list parseable&#x3D;true: 可以目录的形式来展现当前安装的所有 node 包</span><br><span class="line"></span><br><span class="line">npm help：查看帮助命令</span><br><span class="line"></span><br><span class="line">npm view moudleName dependencies：查看包的依赖关系</span><br><span class="line"></span><br><span class="line">npm view moduleName repository.url：查看包的源文件地址</span><br><span class="line"></span><br><span class="line">npm view moduleName engines：查看包所依赖的 Node 的版本</span><br><span class="line"></span><br><span class="line">npm help folders：查看 npm 使用的所有文件夹</span><br><span class="line">   </span><br><span class="line">npm rebuild moduleName：用于更改包内容后进行重建</span><br><span class="line"> </span><br><span class="line">npm outdated：检查包是否已经过时，此命令会列出所有已经过时的包，可以及时进行包的更新，推荐使用检查依赖包更强大的一个工具[npm-check](https:&#x2F;&#x2F;www.npmjs.com&#x2F;package&#x2F;npm-check)</span><br><span class="line"> </span><br><span class="line">npm update moduleName 或 npm update -g：更新已经安装的模块(或全局的模块)</span><br><span class="line"></span><br><span class="line">npm uninstall moudleName：卸载 node 模块</span><br><span class="line">  </span><br><span class="line">npm help json: 访问 npm 的 json 文件夹,此命令会以默认的方式打开一个网页，如果更改了默认打开程序则可能不会以网页的形式打开</span><br><span class="line"></span><br><span class="line">npm search packageName:检验某个包名是否已存在</span><br><span class="line"></span><br><span class="line">npm init：创建一个 package.json 文件，包括名称、版本、作者这些信息等</span><br><span class="line"></span><br><span class="line">npm root：查看当前包的安装路径</span><br><span class="line"></span><br><span class="line">npm root -g：查看全局的包的安装路径</span><br><span class="line"></span><br><span class="line">npm config ls -l：查看和管理 npm 的基础配置</span><br><span class="line"></span><br><span class="line">npm list --depth&#x3D;0: 查看项目中安装哪些模块</span><br><span class="line"></span><br><span class="line">npm list --depth --global: 查看全局安装了哪些工具</span><br><span class="line"></span><br><span class="line">npm list moduleNames： 查看某个模块是否安装了</span><br></pre></td></tr></table></figure><h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p><a href="https://segmentfault.com/a/1190000013585195" target="_blank" rel="noopener">npm 常见问题小结</a></p><h2 id="更多关于-npm-资料可参考"><a href="#更多关于-npm-资料可参考" class="headerlink" title="更多关于 npm 资料可参考"></a>更多关于 npm 资料可参考</h2><p><a href="https://github.com/ericdum/mujiang.info/issues/6/" target="_blank" rel="noopener">npm 的 package.json 中文文档</a></p><p><a href="https://cloud.tencent.com/developer/chapter/18110" target="_blank" rel="noopener">npm入门</a></p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;&lt;img src=&quot;https://tva1.sinaimg.cn/large/0082zybply1gc306takvvj30ui0gqgnh.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="周边" scheme="http://www.barebear.cn/categories/%E5%91%A8%E8%BE%B9/"/>
+    
+    
+      <category term="npm" scheme="http://www.barebear.cn/tags/npm/"/>
+    
+  </entry>
   
   <entry>
     <title>Node.js安装及环境配置之centos篇</title>
@@ -76,29 +99,6 @@
     <summary type="html">
     
       &lt;p&gt;&lt;img src=&quot;https://tva1.sinaimg.cn/large/0082zybply1gc2yittxe7j30g008cq7o.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="周边" scheme="http://www.barebear.cn/categories/%E5%91%A8%E8%BE%B9/"/>
-    
-    
-      <category term="npm" scheme="http://www.barebear.cn/tags/npm/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>js 中一些意想不到的使用技巧（持续更新，欢迎补充）</title>
-    <link href="http://www.barebear.cn/2020/02/20/npm/1/"/>
-    <id>http://www.barebear.cn/2020/02/20/npm/1/</id>
-    <published>2020-02-20T08:10:56.000Z</published>
-    <updated>2020-02-20T08:31:50.000Z</updated>
-    
-    <content type="html"><![CDATA[<h3 id="1-箭头函数-gt-返回-map-对象"><a href="#1-箭头函数-gt-返回-map-对象" class="headerlink" title="1. 箭头函数 =&gt; 返回 map 对象"></a>1. 箭头函数 <code>=&gt;</code> 返回 <code>map</code> 对象</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 一般的写法</span><br><span class="line">const makeMap &#x3D; () &#x3D;&gt; &#123;</span><br><span class="line">  return &#123;key: &#39;value&#39;&#125;;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 简洁的写法</span><br><span class="line">const makeMap &#x3D; () &#x3D;&gt; (&#123;key: &#39;value&#39;&#125;);</span><br></pre></td></tr></table></figure><a id="more"></a>]]></content>
-    
-    <summary type="html">
-    
-      &lt;h3 id=&quot;1-箭头函数-gt-返回-map-对象&quot;&gt;&lt;a href=&quot;#1-箭头函数-gt-返回-map-对象&quot; class=&quot;headerlink&quot; title=&quot;1. 箭头函数 =&amp;gt; 返回 map 对象&quot;&gt;&lt;/a&gt;1. 箭头函数 &lt;code&gt;=&amp;gt;&lt;/code&gt; 返回 &lt;code&gt;map&lt;/code&gt; 对象&lt;/h3&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&amp;#x2F;&amp;#x2F; 一般的写法&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;const makeMap &amp;#x3D; () &amp;#x3D;&amp;gt; &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  return &amp;#123;key: &amp;#39;value&amp;#39;&amp;#125;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#x2F;&amp;#x2F; 简洁的写法&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;const makeMap &amp;#x3D; () &amp;#x3D;&amp;gt; (&amp;#123;key: &amp;#39;value&amp;#39;&amp;#125;);&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
     
     </summary>
     
