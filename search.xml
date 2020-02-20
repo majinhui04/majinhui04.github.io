@@ -1,6 +1,98 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[Node.js安装及环境配置之centos篇]]></title>
+    <url>%2F2020%2F02%2F20%2Fnode%2F3%2F</url>
+    
+      <content type="text"><![CDATA[一、源码包安装首先安装wget如果已经安装了可以跳过该步 1yum install -y wget 下载nodejs最新的tar包可以在下载页面https://nodejs.org/en/download/中找到下载地址。然后执行指令 1wget https:&#x2F;&#x2F;nodejs.org&#x2F;dist&#x2F;v9.3.0&#x2F;node-v9.3.0-linux-x64.tar.xz 然后就是等着下载完毕。 另外你也可以在你喜欢的任意系统上下载最新的bin包，然后通过FTP上传到CentOS上。 解压包1tar -xvf node-v9.3.0-linux-x64.tar.xz 部署bin文件先确认你nodejs的路径，我这里的路径为~/node-v9.3.0-linux-x64/bin。确认后依次执行 12ln -s ~&#x2F;node-v9.3.0-linux-x64&#x2F;bin&#x2F;node &#x2F;usr&#x2F;bin&#x2F;nodeln -s ~&#x2F;node-v9.3.0-linux-x64&#x2F;bin&#x2F;npm &#x2F;usr&#x2F;bin&#x2F;npm 注意ln指令用于创建关联（类似与Windows的快捷方式）必须给全路径，否则可能关联错误。 测试12node -vnpm -v 如果正确输出版本号，则部署OK 这种安装的方法好处是比较干净，安装也比较快速。个人认为比较适合新手。但是如果遇到nodejs插件全局安装时，需要自行去创建关联，参考第4步。 二、nvm方式安装1curl https:&#x2F;&#x2F;raw.github.com&#x2F;creationix&#x2F;nvm&#x2F;master&#x2F;install.sh | sh 1wget -qO- https:&#x2F;&#x2F;raw.github.com&#x2F;creationix&#x2F;nvm&#x2F;master&#x2F;install.sh | sh 安装完成后，执行下列命令即可安装 Node.js。 1nvm install stable 12node -vnpm -v 三、yum方式1curl -sL https:&#x2F;&#x2F;rpm.nodesource.com&#x2F;setup_10.x | bash - 1yum install -y nodejs 12node -vnpm -v]]></content>
+    
+      <categories>
+        <category>周边</category>
+      </categories>
+      <tags>
+        <tag>node</tag>
+        <tag>centos</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Node.js安装及环境配置之Mac篇]]></title>
+    <url>%2F2020%2F02%2F20%2Fnode%2F2%2F</url>
+    
+      <content type="text"><![CDATA[下载nodejs访问nodejs官网（https://nodejs.org/en/）选择合适，我选择是mac的 安装双击刚下载的.pkg文件，打开之后按照步骤默认安装就行 安装完成之后肯定要检查的，打开终端，分别输入 : 12node-v npm -v 由于node安装的时候就自带npm了。如果出现版本信息，就说明安装成功。 修改全局安装权限1sudo chmod -R 777 &#x2F;usr&#x2F;local&#x2F;lib&#x2F;node_modules&#x2F;]]></content>
+    
+      <categories>
+        <category>周边</category>
+      </categories>
+      <tags>
+        <tag>node</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Node.js安装及环境配置之Windows篇]]></title>
+    <url>%2F2020%2F02%2F20%2Fnode%2F1%2F</url>
+    
+      <content type="text"><![CDATA[一、安装环境1、本机系统：Windows 10 Pro（64位）2、Node.js：v6.9.2LTS（64位） 二、安装Node.js步骤1、下载对应你系统的Node.js版本: https://nodejs.org/en/download/2、选安装目录进行安装3、环境配置4、测试 三、前期准备1、Node.js简介简单的说 Node.js 就是运行在服务端的 JavaScript。Node.js 是一个基于 Chrome V8 引擎的 JavaScript 运行环境。Node.js 使用了一个事件驱动、非阻塞式 I/O 的模型，使其轻量又高效。Node.js 的包管理器 npm，是全球最大的开源库生态系统。2、下载Node.js打开官网下载链接:https://nodejs.org/en/download/我这里下载的是node-v6.9.2-x64.msi,如下图： 开始安装 四、测试在键盘按下【win+R】键，输入cmd，然后回车，打开cmd窗口查看版本,如果正常显示则成功了 1node -v]]></content>
+    
+      <categories>
+        <category>周边</category>
+      </categories>
+      <tags>
+        <tag>npm</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[js 中一些意想不到的使用技巧（持续更新，欢迎补充）]]></title>
+    <url>%2F2020%2F02%2F20%2Fnpm%2F1%2F</url>
+    
+      <content type="text"><![CDATA[1. 箭头函数 =&gt; 返回 map 对象1234567&#x2F;&#x2F; 一般的写法const makeMap &#x3D; () &#x3D;&gt; &#123; return &#123;key: &#39;value&#39;&#125;;&#125;;&#x2F;&#x2F; 简洁的写法const makeMap &#x3D; () &#x3D;&gt; (&#123;key: &#39;value&#39;&#125;);]]></content>
+    
+      <categories>
+        <category>周边</category>
+      </categories>
+      <tags>
+        <tag>npm</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[js 函数参数推荐书写方式 ({ param1, param2, ... })]]></title>
+    <url>%2F2020%2F02%2F20%2Fjavascript%2F3%2F</url>
+    
+      <content type="text"><![CDATA[编程语言函数（包括对象的方法）参数的取值方式大致可以分为两种：按序取值与按名取值。 一般编程语言都是按序取值，比如 C、Java、JavaScript 等，少数语言支持按名取值，比如 Groovy。 1. 按序取值按照顺序，挨个取值，每个参数的顺序是固定的。 123const func &#x3D; (param1, param2, ...) &#x3D;&gt; &#123; ... &#125;func(1, 2, ...) 2. 按名取值按照名称取值，可以任意安排各个参数的顺序。 以下语法并不存在，只是作为讲解生造的 1234const func &#x3D; (param1: value1, param2: value2, ...) &#x3D;&gt; &#123; ... &#125;func(param1: 1, param2: 2); &#x2F;&#x2F; okfunc(param2: 2, param1: 1); &#x2F;&#x2F; ok again 3. js 的按名取值JavaScript 语言本身并不支持按名取值，但结合 ES6 的解构赋值，可以模拟函数参数的按名取值。 123const func &#x3D; (&#123; param1, param2, ... &#125;) &#x3D;&gt; &#123; ... &#125;func(&#123; param1: 1, param2: 2, ... &#125;); 但这种方式如果不传参数调用 func() 就会报错，需要 func({}) 这样调用才表示什么参数都不传。 为了兼容这种方式，可以这样做： 1234const func &#x3D; (&#123; param1, param2, ... &#125; &#x3D; &#123;&#125;) &#x3D;&gt; &#123; ... &#125;func(); &#x2F;&#x2F; okfunc(&#123;&#125;); &#x2F;&#x2F; ok again 4. 为什么推荐使用按名取值的方式按名取值最大的好处是可以随意安排参数的顺序，有利于扩展，特别是对 API 接口来说。 比如： 1export const dialog &#x3D; (title, content, confirmCallback, cancelCallback) &#x3D;&gt; &#123; ... &#125; 比如上面的函数中，大部分情况下我只用 content, confirmCallback，那么我就需要这样做： 1dialog(null, &#39;content&#39;, () &#x3D;&gt; &#123; ... &#125;); 如果我需要扩展一个参数 icon， 那么为了兼容以前的版本，我只能加在最后面： 1export const dialog &#x3D; (title, content, confirmCallback, cancelCallback, icon) &#x3D;&gt; &#123; ... &#125; 现在，大部分情况下我只用 content, confirmCallback, icon，那么我就需要这样做： 1dialog(null, &#39;content&#39;, () &#x3D;&gt; &#123; ... &#125;, null, &#39;icon&#39;); 如此，便很麻烦，不利于扩展。 如果使用按名取值的方式，便迎刃而解： 1234export const dialog &#x3D; (&#123;title, content, confirmCallback, cancelCallback&#125; &#x3D; &#123;&#125;) &#x3D;&gt; &#123; ... &#125;&#x2F;&#x2F; 扩展 iconexport const dialog &#x3D; (&#123;title, content, icon, confirmCallback, cancelCallback&#125; &#x3D; &#123;&#125;) &#x3D;&gt; &#123; ... &#125; 123dialog(&#123;content: &#39;content&#39;, confirmCallback: () &#x3D;&gt; &#123; ... &#125;&#125;);dialog(&#123;content: &#39;content&#39;, icon: &#39;icon&#39;, confirmCallback: () &#x3D;&gt; &#123; ... &#125;&#125;); 5. 大家可能的反驳有人可能会说，可以这样做： 123456789export const dialog &#x3D; (title, content, confirmCallback, cancelCallback) &#x3D;&gt; &#123; if (typeof content &#x3D;&#x3D;&#x3D; &#39;function&#39;) &#123; cancelCallback &#x3D; confirmCallback; confirmCallback &#x3D; content; content &#x3D; title; &#125; ...&#125; 对于这种方式，我只想说：兄弟，简洁一点不好吗？]]></content>
+    
+      <categories>
+        <category>前端</category>
+      </categories>
+      <tags>
+        <tag>JavaScript</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[js 中的 number 为何很怪异]]></title>
+    <url>%2F2020%2F02%2F20%2Fjavascript%2F2%2F</url>
+    
+      <content type="text"><![CDATA[声明：需要读者对二进制有一定的了解 对于 JavaScript 开发者来说，或多或少都遇到过 js 在处理数字上的奇怪现象，比如： 1234567891011121314151617&gt; 0.1 + 0.20.30000000000000004&gt; 0.1 + 1 - 10.10000000000000009&gt; 0.1 * 0.20.020000000000000004&gt; Math.pow(2, 53)9007199254740992&gt; Math.pow(2, 53) + 19007199254740992&gt; Math.pow(2, 53) + 39007199254740996 如果想要弄明白为什么会出现这些奇怪现象，首先要弄清楚 _JavaScript 是怎样编码数字的_。 1. JavaScript 是怎样编码数字的JavaScript 中的数字，不管是整数、小数、分数，还是正数、负数，全部是浮点数，都是用 8 个字节（64 位）来存储的。 一个数字（如 12、0.12、-999）在内存中占用 8 个字节（64 位），存储方式如下： 0 - 51：分数部分（52 位） 52 - 62：指数部分（11 位） 63：符号位（1 位：0 表示这个数是正数，1 表示这个数是负数） 符号位很好理解，用于指明是正数还是负数，且只有 1 位、两种情况（0 表示正数，1 表示负数）。 其他两部分是分数部分和指数部分，用于计算一个数的绝对值。 1.1 绝对值计算公式123451: abs &#x3D; 1.f * 2 ^ (e - 1023) 0 &lt; e &lt; 20472: abs &#x3D; 0.f * 2 ^ (e - 1022) e &#x3D; 0, f &gt; 03: abs &#x3D; 0 e &#x3D; 0, f &#x3D; 04: abs &#x3D; NaN e &#x3D; 2047, f &gt; 05: abs &#x3D; ∞ (infinity, 无穷大) e &#x3D; 2047, f &#x3D; 0 说明： 这个公式是二进制的算法公式，结果用 abs 表示，分数部分用 f 表示，指数部分用 e 表示 2 ^ (e - 1023) 表示 2 的 e - 1023 次方 因为分数部分占 52 位，所以 f 的取值范围为 00...00（中间省略 48 个 0） 到 11...11（中间省略 48 个 1） 因为指数部分占 11 位，所以 e 的取值范围为 0（00000000000） 到 2047（11111111111） 从上面的公式可以看出： 1 的存储方式：1.00 * 2 ^ (1023 - 1023)（f = 0000..., e = 1023，... 表示 48 个 0） 2 的存储方式：1.00 * 2 ^ (1024 - 1023)（f = 0000..., e = 1024，... 表示 48 个 0） 9 的存储方式：1.001 * 2 ^ (1026 - 1023)（f = 0010..., e = 1026，... 表示 48 个 0） 0.5 的存储方式：1.00 * 2 ^ (1022 - 1023)（f = 0000..., e = 1022，... 表示 48 个 0） 0.625 的存储方式：1.01 * 2 ^ (1022 - 1023)（f = 0100..., e = 1022，... 表示 48 个 0） 1.2 绝对值的取值范围与边界从上面的公式可以看出： 1.2.1 0 &lt; e &lt; 2047当 0 &lt; e &lt; 2047 时，取值范围为：f = 0, e = 1 到 f = 11...11, e = 2046（中间省略 48 个 1） 即：Math.pow(2, -1022) 到 ~= Math.pow(2, 1024) - 1（～= 表示约等于） 这当中，~= Math.pow(2, 1024) - 1 就是 Number.MAX_VALUE 的值，js 所能表示的最大数值。 1.2.2 e = 0, f &gt; 0当 e = 0, f &gt; 0 时，取值范围为：f = 00...01, e = 0（中间省略 48 个 0） 到 f = 11...11, e = 0（中间省略 48 个 1） 即：Math.pow(2, -1074) 到 ~= Math.pow(2, -1022)（～= 表示约等于） 这当中，Math.pow(2, -1074) 就是 Number.MIN_VALUE 的值，js 所能表示的最小数值（绝对值）。 1.2.3 e = 0, f = 0这只表示一个值 0，但加上符号位，所以有 +0 与 -0。 但在运算中： 12&gt; +0 &#x3D;&#x3D;&#x3D; -0true 1.2.4 e = 2047, f &gt; 0这只表示一种值 NaN。 但在运算中： 12345&gt; NaN &#x3D;&#x3D; NaNfalse&gt; NaN &#x3D;&#x3D;&#x3D; NaNfalse 1.2.5 e = 2047, f = 0这只表示一个值 ∞ (infinity, 无穷大)。 在运算中： 12345&gt; Infinity &#x3D;&#x3D;&#x3D; Infinitytrue&gt; -Infinity &#x3D;&#x3D;&#x3D; -Infinitytrue 1.3 绝对值的最大安全值从上面可以看出，8 个字节能存储的最大数值是 Number.MAX_VALUE 的值，也就是 ~= Math.pow(2, 1024) - 1。 但这个数值并不安全：从 1 到 Number.MAX_VALUE 中间的数字并不连续，而是离散的。 比如：Number.MAX_VALUE - 1, Number.MAX_VALUE - 2 等数值都无法用公式得出，就存储不了。 所以这里引出了最大安全值 Number.MAX_SAFE_INTEGER，也就是从 1 到 Number.MAX_SAFE_INTEGER 中间的数字都是连续的，处在这个范围内的数值计算都是安全的。 当 f = 11...11, e = 1075（中间省略 48 个 1）时，取得这个值 111...11（中间省略 48 个 1），即 Math.pow(2, 53) - 1。 大于 Number.MAX_SAFE_INTEGER：Math.pow(2, 53) - 1 的数值都是离散的。 比如：Math.pow(2, 53) + 1, Math.pow(2, 53) + 3 不能用公式得出，无法存储在内存中。 所以才会有文章开头的现象： 12345678&gt; Math.pow(2, 53)9007199254740992&gt; Math.pow(2, 53) + 19007199254740992&gt; Math.pow(2, 53) + 39007199254740996 因为 Math.pow(2, 53) + 1 不能用公式得出，就无法存储在内存中，所以只有取最靠近这个数的、能够用公式得出的其他数，Math.pow(2, 53)，然后存储在内存中，这就是失真，即不安全。 1.4 小数的存储方式与计算小数中，除了满足 m / (2 ^ n)（m, n 都是整数）的小数可以用完整的 2 进制表示之外，其他的都不能用完整的 2 进制表示，只能无限的逼近一个 2 进制小数。 （注：[2] 表示二进制，^ 表示 N 次方） 120.5 &#x3D; 1 &#x2F; 2 &#x3D; [2]0.10.875 &#x3D; 7 &#x2F; 8 &#x3D; 1 &#x2F; 2 + 1 &#x2F; 4 + 1 &#x2F; 8 &#x3D; [2]0.111 12345678910111213# 0.3 的逼近0.25 ([2]0.01) &lt; 0.3 &lt; 0.5 ([2]0.10)0.296875 ([2]0.0100110) &lt; 0.3 &lt; 0.3046875 ([2]0.0100111)0.2998046875 ([2]0.01001100110) &lt; 0.3 &lt; 0.30029296875 ([2]0.01001100111)... 根据公式计算，直到把分数部分的 52 位填满，然后取最靠近的数0.3 的存储方式：[2]0.010011001100110011001100110011001100110011001100110011(f &#x3D; 0011001100110011001100110011001100110011001100110011, e &#x3D; 1021) 从上面可以看出，小数中大部分都只是近似值，只有少部分是真实值，所以只有这少部分的值（满足 m / (2 ^ n) 的小数）可以直接比较大小，其他的都不能直接比较。 12345&gt; 0.5 + 0.125 &#x3D;&#x3D;&#x3D; 0.625true&gt; 0.1 + 0.2 &#x3D;&#x3D;&#x3D; 0.3false 为了安全的比较两个小数，引入 Number.EPSILON [Math.pow(2, -52)] 来比较浮点数。 12&gt; Math.abs(0.1 + 0.2 - 0.3) &lt; Number.EPSILONtrue 1.5 小数最大保留位数js 从内存中读取一个数时，最大保留 17 位有效数字。 123&gt; 0.0100110011001100110011001100110011001100110011001100110.300000000000000000.3 12&gt; 0.0100110011001100110011001100110011001100110011001100100.29999999999999993 12&gt; 0.0100110011001100110011001100110011001100110011001101000.30000000000000004 12&gt; 0.00000101000111101011100001010001111010111000010100011111000.020000000000000004 2. Number 对象中的常量2.1 Number.EPSILON表示 1 与 Number 可表示的大于 1 的最小的浮点数之间的差值。 1Math.pow(2, -52) 用于浮点数之间安全的比较大小。 2.2 Number.MAX_SAFE_INTEGER绝对值的最大安全值。 1Math.pow(2, 53) - 1 2.3 Number.MAX_VALUEjs 所能表示的最大数值（8 个字节能存储的最大数值）。 1~&#x3D; Math.pow(2, 1024) - 1 2.4 Number.MIN_SAFE_INTEGER最小安全值（包括符号）。 1-(Math.pow(2, 53) - 1) 2.5 Number.MIN_VALUEjs 所能表示的最小数值（绝对值）。 1Math.pow(2, -1074) 2.6 Number.NEGATIVE_INFINITY负无穷大。 1-Infinity 2.7 Number.POSITIVE_INFINITY正无穷大。 1+Infinity 2.8 Number.NaN非数字。 3. 寻找奇怪现象的原因3.1 为什么 0.1 + 0.2 结果是 0.30000000000000004与 0.3 的逼近算法类似。 12345670.1 的存储方式：[2]0.00011001100110011001100110011001100110011001100110011010(f &#x3D; 1001100110011001100110011001100110011001100110011010, e &#x3D; 1019)0.2 的存储方式：[2]0.0011001100110011001100110011001100110011001100110011010(f &#x3D; 1001100110011001100110011001100110011001100110011010, e &#x3D; 1020) 1230.1 + 0.2: 0.0100110011001100110011001100110011001100110011001100111(f &#x3D; 00110011001100110011001100110011001100110011001100111, e &#x3D; 1021) 但 f = 00110011001100110011001100110011001100110011001100111 有 53 位，超过了正常的 52 位，无法存储，所以取最近的数： 1230.1 + 0.2: 0.010011001100110011001100110011001100110011001100110100(f &#x3D; 0011001100110011001100110011001100110011001100110100, e &#x3D; 1021) js 读取这个数字为 0.30000000000000004 3.2 为什么 Math.pow(2, 53) + 1 结果是 Math.pow(2, 53)因为 Math.pow(2, 53) + 1 不能用公式得出，无法存储在内存中，所以只有取最靠近这个数的、能够用公式得出的其他数。 比这个数小的、最靠近的数： 123Math.pow(2, 53)(f &#x3D; 0000000000000000000000000000000000000000000000000000, e &#x3D; 1076) 比这个数大的、最靠近的数： 123Math.pow(2, 53) + 2(f &#x3D; 0000000000000000000000000000000000000000000000000001, e &#x3D; 1076) 取第一个数：Math.pow(2, 53)。 所以： 12&gt; Math.pow(2, 53) + 1 &#x3D;&#x3D;&#x3D; Math.pow(2, 53)true 参考文章 How numbers are encoded in JavaScript JavaScript 是怎样编码数字的]]></content>
+    
+      <categories>
+        <category>前端</category>
+      </categories>
+      <tags>
+        <tag>JavaScript</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[js 中一些意想不到的使用技巧（持续更新，欢迎补充）]]></title>
+    <url>%2F2020%2F02%2F20%2Fjavascript%2F1%2F</url>
+    
+      <content type="text"><![CDATA[1. 箭头函数 =&gt; 返回 map 对象1234567&#x2F;&#x2F; 一般的写法const makeMap &#x3D; () &#x3D;&gt; &#123; return &#123;key: &#39;value&#39;&#125;;&#125;;&#x2F;&#x2F; 简洁的写法const makeMap &#x3D; () &#x3D;&gt; (&#123;key: &#39;value&#39;&#125;); 2. 对象属性名不确定，需要动态的传入123456789&#x2F;&#x2F; 一般的写法const makeMap &#x3D; (key, value) &#x3D;&gt; &#123; const obj &#x3D; &#123;&#125;; obj[key] &#x3D; value; return obj;&#125;;&#x2F;&#x2F; 简洁的写法const makeMap &#x3D; (key, value) &#x3D;&gt; (&#123;[key]: value&#125;); 3. 复制一个对象，并重写其中的一些属性12345678const source &#x3D; &#123;hello: &#39;hello&#39;, hi: &#39;hi&#39;&#125;;&#x2F;&#x2F; 一般的写法const target &#x3D; Object.assign(&#123;&#125;, source);target.hello &#x3D; &#39;hello everyone&#39;;&#x2F;&#x2F; 简洁的写法const target &#x3D; &#123;...source, hello: &#39;hello everyone&#39;&#125;; 4. 数组解构为函数参数12345678const arr &#x3D; [1, 2, 3];const plus &#x3D; (...args) &#x3D;&gt; args.reduce((a, b) &#x3D;&gt; a + b);&#x2F;&#x2F; 一般的写法plus(arr[0], arr[1], arr[2], 4, 5);&#x2F;&#x2F; 简洁的写法plus(...arr, 4, 5); 5. 向一个数组添加另一数组的所有元素12345678const arr1 &#x3D; [1, 2, 3];const arr2 &#x3D; [4, 5, 6];&#x2F;&#x2F; 一般的写法arr1 &#x3D; arr1.concat(arr2);&#x2F;&#x2F; 简洁的写法arr1.push(...arr2); 6. 回调函数简写1234567&#x2F;&#x2F; 一般的写法promise.catch(e &#x3D;&gt; &#123; console.log(e);&#125;);&#x2F;&#x2F; 简洁的写法promise.catch(console.log); 7. 多级箭头函数 =&gt;123456789&#x2F;&#x2F; 一般的写法const makeTimesFunc &#x3D; times &#x3D;&gt; &#123; return value &#x3D;&gt; &#123; return value * times; &#125;;&#125;;&#x2F;&#x2F; 简洁的写法const makeTimesFunc &#x3D; times &#x3D;&gt; value &#x3D;&gt; value * times; 8. 从右向左函数复式调用12345678910111213141516 &#x2F;&#x2F; 不确定元素个数，举例 3 个const fnCollection &#x3D; [str &#x3D;&gt; &#96;$&#123;str&#125; | fisrt&#96;, str &#x3D;&gt; &#96;$&#123;str&#125; | second&#96;, str &#x3D;&gt; &#96;$&#123;str&#125; | third&#96;];&#x2F;&#x2F; 一般的写法const addManySuffixes &#x3D; str &#x3D;&gt; &#123; let result &#x3D; str; for(let i &#x3D; fnCollection.length - 1; i &gt; -1; i -&#x3D; 1) result &#x3D; fnCollection[i](result); return result;&#125;;&#x2F;&#x2F; 简洁的写法const addManySuffixes &#x3D; fnCollection.reduce((a, b) &#x3D;&gt; str &#x3D;&gt; a(b(str)));&#x2F;&#x2F; 可以把 str 参数扩展成任意参数const addManySuffixes &#x3D; fnCollection.reduce((a, b) &#x3D;&gt; (...args) &#x3D;&gt; a(b(...args))); 后续更多博客，查看 https://github.com/senntyou/blogs 作者：深予之 (@senntyou) 版权声明：自由转载-非商用-非衍生-保持署名（创意共享 3.0 许可证）]]></content>
+    
+      <categories>
+        <category>前端</category>
+      </categories>
+      <tags>
+        <tag>JavaScript</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[Git的最佳实践]]></title>
     <url>%2F2020%2F02%2F18%2Fgit-tips%2F</url>
     
