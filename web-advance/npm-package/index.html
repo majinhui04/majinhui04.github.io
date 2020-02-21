@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="前端,javascript," />
+  <meta name="keywords" content="前端,npm," />
 
 
 
@@ -81,20 +81,21 @@
 
 
 
-<meta name="description" content="提问大家应该都经历过这么一个场景，当我们使用微博或者写文章的时候，网站允许我们一次性选择多个图片进行上传，或者当我们写爬虫的时候都需要用并发来提高效率，那么问题来了，因为并发数过大会影响服务器的性能，因此需要限流。那我们如何实现并发的同时又限制个数呢？请实现一个Promise.map方法">
+<meta name="description" content="写在前面没有发布过npm包的同学，可能会对NPM对开发有一种蜜汁敬畏，觉得这是一个很高大上的东西。甚至有次面试，面试官问我有没有发过npm包，当时只用过还没写过，我想应该挺难的，就小声说了没有，然后就让我回去了o(╯□╰)o。 其实，在现在的我看来，npm包就是一个我们平时经常写的一个export出来的模块而已，只不过跟其它业务代码耦合性低，具有较高的独立性。 当然，要发布一个npm包，除了写的模">
 <meta property="og:type" content="article">
-<meta property="og:title" content="每日一题：如何处理Promise并发限流">
-<meta property="og:url" content="http://www.barebear.cn/Promise-map/index.html">
+<meta property="og:title" content="从0开始发布一个无依赖、高质量的 npm 包">
+<meta property="og:url" content="http://www.barebear.cn/web-advance/npm-package/index.html">
 <meta property="og:site_name" content="马金慧的博客">
-<meta property="og:description" content="提问大家应该都经历过这么一个场景，当我们使用微博或者写文章的时候，网站允许我们一次性选择多个图片进行上传，或者当我们写爬虫的时候都需要用并发来提高效率，那么问题来了，因为并发数过大会影响服务器的性能，因此需要限流。那我们如何实现并发的同时又限制个数呢？请实现一个Promise.map方法">
-<meta property="og:image" content="https://tva1.sinaimg.cn/large/0082zybply1gbzovtfx5ej30dw0af3yj.jpg">
-<meta property="article:published_time" content="2020-02-17T12:38:53.000Z">
-<meta property="article:modified_time" content="2020-02-19T02:52:34.000Z">
+<meta property="og:description" content="写在前面没有发布过npm包的同学，可能会对NPM对开发有一种蜜汁敬畏，觉得这是一个很高大上的东西。甚至有次面试，面试官问我有没有发过npm包，当时只用过还没写过，我想应该挺难的，就小声说了没有，然后就让我回去了o(╯□╰)o。 其实，在现在的我看来，npm包就是一个我们平时经常写的一个export出来的模块而已，只不过跟其它业务代码耦合性低，具有较高的独立性。 当然，要发布一个npm包，除了写的模">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/0082zybply1gc41ykp6mwj304o00uq2u.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/0082zybply1gc41yzgw8vj305m06kaac.jpg">
+<meta property="article:published_time" content="2020-02-21T07:40:56.000Z">
+<meta property="article:modified_time" content="2020-02-21T07:51:51.000Z">
 <meta property="article:author" content="Ma JinHui">
 <meta property="article:tag" content="前端">
-<meta property="article:tag" content="javascript">
+<meta property="article:tag" content="npm">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://tva1.sinaimg.cn/large/0082zybply1gbzovtfx5ej30dw0af3yj.jpg">
+<meta name="twitter:image" content="https://tva1.sinaimg.cn/large/0082zybply1gc41ykp6mwj304o00uq2u.jpg">
 
 
 
@@ -124,13 +125,13 @@
 
 
 
-  <link rel="canonical" href="http://www.barebear.cn/Promise-map/"/>
+  <link rel="canonical" href="http://www.barebear.cn/web-advance/npm-package/"/>
 
 
 
 
 
-  <title>每日一题：如何处理Promise并发限流 | 马金慧的博客</title>
+  <title>从0开始发布一个无依赖、高质量的 npm 包 | 马金慧的博客</title>
   
 
 
@@ -291,7 +292,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.barebear.cn/Promise-map/">
+    <link itemprop="mainEntityOfPage" href="http://www.barebear.cn/web-advance/npm-package/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Ma JinHui">
@@ -308,7 +309,7 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">每日一题：如何处理Promise并发限流</h2>
+          <h2 class="post-title" itemprop="name headline">从0开始发布一个无依赖、高质量的 npm 包</h2>
         
 
         <div class="post-meta">
@@ -320,8 +321,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-02-17T20:38:53+08:00">
-                2020-02-17
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-02-21T15:40:56+08:00">
+                2020-02-21
               </time>
             
 
@@ -336,8 +337,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2020-02-19T10:52:34+08:00">
-                2020-02-19
+              <time title="更新于" itemprop="dateModified" datetime="2020-02-21T15:51:51+08:00">
+                2020-02-21
               </time>
             
           </span>
@@ -355,8 +356,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%89%8D%E7%AB%AF/" itemprop="url" rel="index">
-                    <span itemprop="name">前端</span>
+                  <a href="/categories/%E5%89%8D%E7%AB%AF%E8%BF%9B%E9%98%B6/" itemprop="url" rel="index">
+                    <span itemprop="name">前端进阶</span>
                   </a>
                 </span>
 
@@ -391,7 +392,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  432
+                  1.7k
                 </span>
               
 
@@ -407,7 +408,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  1
+                  6
                 </span>
               
             </div>
@@ -428,17 +429,79 @@
       
 
       
-        <h2 id="提问"><a href="#提问" class="headerlink" title="提问"></a>提问</h2><p>大家应该都经历过这么一个场景，当我们使用微博或者写文章的时候，网站允许我们一次性选择多个图片进行上传，或者当我们写爬虫的时候都需要用并发来提高效率，那么问题来了，因为并发数过大会影响服务器的性能，因此需要限流。那我们如何实现并发的同时又限制个数呢？请实现一个<code>Promise.map</code>方法</p>
+        <h2 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h2><p>没有发布过npm包的同学，可能会对NPM对开发有一种蜜汁敬畏，觉得这是一个很高大上的东西。甚至有次面试，面试官问我有没有发过npm包，当时只用过还没写过，我想应该挺难的，就小声说了没有，然后就让我回去了o(╯□╰)o。</p>
+<p>其实，在现在的我看来，npm包就是一个我们平时经常写的一个export出来的模块而已，只不过跟其它业务代码耦合性低，具有较高的独立性。</p>
+<p>当然，要发布一个npm包，除了写的模块组件外，还需要做一些基础的包装工作。下面我就以最近开发的「DigitalKeyboard 数字键盘 NPM」 为例，一一列出具体步骤：</p>
 <a id="more"></a>
 
-<p>先思考一下下……..</p>
-<p><img src="https://tva1.sinaimg.cn/large/0082zybply1gbzovtfx5ej30dw0af3yj.jpg" alt=""></p>
-<h2 id="回答"><a href="#回答" class="headerlink" title="回答"></a>回答</h2><p>设计成 Bluebird（npm包） 的 API，是比较模块化，也是易于使用的。代码的关键在于维护一个队列，当超过限定数量的 Promise 时，则交与队列维护。代码如下</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Limit</span> </span>&#123;</span><br><span class="line">  <span class="keyword">constructor</span> (n) &#123;</span><br><span class="line">    <span class="keyword">this</span>.limit = n</span><br><span class="line">    <span class="keyword">this</span>.count = <span class="number">0</span></span><br><span class="line">    <span class="keyword">this</span>.queue = []</span><br><span class="line">  &#125;</span><br><span class="line"> </span><br><span class="line">  enqueue (fn) &#123;</span><br><span class="line">    <span class="comment">// 关键代码: fn, resolve, reject 统一管理</span></span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;</span><br><span class="line">      <span class="keyword">this</span>.queue.push(&#123; fn, resolve, reject &#125;)</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;</span><br><span class="line"> </span><br><span class="line">  dequeue () &#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">this</span>.count &lt; <span class="keyword">this</span>.limit &amp;&amp; <span class="keyword">this</span>.queue.length) &#123;</span><br><span class="line">      <span class="comment">// 等到 Promise 计数器小于阈值时，则出队执行</span></span><br><span class="line">      <span class="keyword">const</span> &#123; fn, resolve, reject &#125; = <span class="keyword">this</span>.queue.shift()</span><br><span class="line">      <span class="keyword">this</span>.run(fn).then(resolve).catch(reject)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"> </span><br><span class="line">  <span class="comment">// async/await 简化错误处理</span></span><br><span class="line">  <span class="keyword">async</span> run (fn) &#123;</span><br><span class="line">    <span class="keyword">this</span>.count++</span><br><span class="line">    <span class="comment">// 维护一个计数器</span></span><br><span class="line">    <span class="keyword">const</span> value = <span class="keyword">await</span> fn()</span><br><span class="line">    <span class="keyword">this</span>.count--</span><br><span class="line">    <span class="comment">// 执行完，看看队列有东西没</span></span><br><span class="line">    <span class="keyword">this</span>.dequeue()</span><br><span class="line">    <span class="keyword">return</span> value</span><br><span class="line">  &#125;</span><br><span class="line"> </span><br><span class="line">  build (fn) &#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">this</span>.count &lt; <span class="keyword">this</span>.limit) &#123;</span><br><span class="line">      <span class="comment">// 如果没有到达阈值，直接执行</span></span><br><span class="line">      <span class="keyword">return</span> <span class="keyword">this</span>.run(fn)</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="comment">// 如果超出阈值，则先扔到队列中，等待有空闲时执行</span></span><br><span class="line">      <span class="keyword">return</span> <span class="keyword">this</span>.enqueue(fn)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// concurrency 并发数目</span></span><br><span class="line"><span class="built_in">Promise</span>.map = <span class="function"><span class="keyword">function</span> (<span class="params">list, fn, &#123; concurrency &#125;</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> limit = <span class="keyword">new</span> Limit(concurrency)</span><br><span class="line">  <span class="keyword">return</span> <span class="built_in">Promise</span>.all(list.map(<span class="function">(<span class="params">...args</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> limit.build(<span class="function"><span class="params">()</span> =&gt;</span> fn(...args))</span><br><span class="line">  &#125;))</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>1、写基础模块代码；</p>
+<p>2、注册npm账号；</p>
+<p>3、配置package.json；</p>
+<p>4、配置webpack；</p>
+<p>5、添加单元测试；</p>
+<p>6、完善README.md；</p>
+<p>7、发布</p>
+<p>1、2、3足可以完成一个npm，4、5、6是为了开发一个高质量的npm。</p>
+<h2 id="开始"><a href="#开始" class="headerlink" title="开始"></a>开始</h2><p>具体代码移步github（<a href="https://github.com/simbawus/DigitalKeyboard），请反手" target="_blank" rel="noopener">https://github.com/simbawus/DigitalKeyboard），请反手</a> 给个 ★ Star ^_~。完整目录结构如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">├── LICENSE</span><br><span class="line">├── README.md</span><br><span class="line">├── build</span><br><span class="line">│   └── Keyboard.js</span><br><span class="line">├── config</span><br><span class="line">│   └── webpack</span><br><span class="line">│       ├── webpack.base.config.js</span><br><span class="line">│       ├── webpack.config.js</span><br><span class="line">│       ├── webpack.dev.config.js</span><br><span class="line">│       └── webpack.prod.config.js</span><br><span class="line">├── index.html</span><br><span class="line">├── package.json</span><br><span class="line">├── src</span><br><span class="line">│   ├── Keyboard.js</span><br><span class="line">│   ├── Keyboard.scss</span><br><span class="line">│   └── main.js</span><br><span class="line">├── <span class="built_in">test</span></span><br><span class="line">│   └── Keyboard.test.js</span><br><span class="line">└── yarn.lock</span><br></pre></td></tr></table></figure>
 
-<blockquote>
-<p>课外题：自己实现一个<code>Promise.all</code>函数</p>
-</blockquote>
+<h3 id="基础模块代码"><a href="#基础模块代码" class="headerlink" title="基础模块代码"></a>基础模块代码</h3><p>现在只需要看src目录下的三个文件。其中，main.js 主要是对将要开发模块的引用，只需存在于开发阶段，同时作为此阶段webpack的入口文件，核心代码在Keyboard.js。</p>
+<p>这里，主要用的是ES6的class和export default，Keyboard的核心思想就是点击哪个键就对外输出什么内容，实现也比较简单，大家都能看得懂，这里就不展开讲了，具体可以看github 源码。</p>
+<h3 id="注册npm账号"><a href="#注册npm账号" class="headerlink" title="注册npm账号"></a>注册npm账号</h3><p>这一步也不用说，大家直接去官网注册就好了。</p>
+<h3 id=""><a href="#" class="headerlink" title=""></a></h3><p>配置package.json</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">"name"</span>: <span class="string">"digital-keyboard"</span>,</span><br><span class="line">  <span class="attr">"version"</span>: <span class="string">"1.0.0"</span>,</span><br><span class="line">  <span class="attr">"main"</span>: <span class="string">"build/Keyboard.js"</span>,</span><br><span class="line">  <span class="attr">"repository"</span>: <span class="string">"https://github.com/simbawus/DigitalKeyboard.git"</span>,</span><br><span class="line">  <span class="attr">"author"</span>: <span class="string">"simbawu &lt;connect@simbawu.com&gt;"</span>,</span><br><span class="line">  <span class="attr">"description"</span>: <span class="string">"DigitalKeyboard Component"</span>,</span><br><span class="line">  <span class="attr">"keywords"</span>: [</span><br><span class="line">    <span class="string">"DigitalKeyboard"</span>,</span><br><span class="line">    <span class="string">"Digital"</span>,</span><br><span class="line">    <span class="string">"Keyboard"</span>,</span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>此时的配置文件也比较简单，只需配置npm包名，准备用的名字现在npm搜索一下，已经存在的就不能用了；版本号version，每次发布版本号都需要更新，不然发布不成功；对外<code>export</code>的文件路径，这里我用的是webpack打包后的文件，如果不用webpack，直接引用src/Keyboard.js也可以，只不过要做模块化方式兼容，这个后面说。也可以放上项目所在github地址及作者名，description和keywords比较利于SEO，不过这些都不是必需项。</p>
+<p>到这里，一个npm包就开发完成了，直接发布即可使用。但是，略显粗糙：代码压缩、单元测试、readme都没写，别人不知道怎么用也不敢用。下面一步步完善。</p>
+<p>配置webpack</p>
+<p>这里用的是最新版的webpack4，官方提供production和development两种开发模式，并分别做了默认压缩处理，非常适合这里。有两点要特别说明下：</p>
+<ul>
+<li><p><strong>libraryTarget: ‘umd’</strong></p>
+<p>  umd有的同学可能不是太熟悉，但是cmd、amd大家应该都知道，分别应用于服务端和浏览器端的模块方案。umd就是前面提到的模块化方式兼容。感兴趣可以参考我的另一篇文章JavaScript Module 设计解析及总结。</p>
+</li>
+<li><p><strong>production和development的entry不一样：</strong></p>
+<p>  development的entry是main.js，而production的entry是Keyboard.js。前面说过，开发阶段需要有对模块的引用，但是正式发布就不需要了，所以要分别配置。</p>
+</li>
+</ul>
+<p>其他就不展开讲了，我的webpack配置结构很清晰，欢迎大家直接copy。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">├── webpack.base.config.js</span><br><span class="line">├── webpack.config.js</span><br><span class="line">├── webpack.dev.config.js</span><br><span class="line">└── webpack.prod.config.js</span><br></pre></td></tr></table></figure>
+
+<h3 id="添加单元测试"><a href="#添加单元测试" class="headerlink" title="添加单元测试"></a>添加单元测试</h3><p>大家经常看到很多不错的项目都有<img src="https://tva1.sinaimg.cn/large/0082zybply1gc41ykp6mwj304o00uq2u.jpg" alt="图片替换文本" width="87" style="margin:0;display:inline-block !important;"/>，这就像一个证明可用性的证书，给人安全感和信任感，所以添加单元测试，还是很有必要的，同时也可以提高代码质量。先介绍需要用到的几个概念：</p>
+<ul>
+<li><p>mocha：测试框架；</p>
+</li>
+<li><p>chai：断言库，断言通俗来讲就是判断代码结果对不对；</p>
+</li>
+<li><p>jsdom：node端是没有js dom对象的，比如window、document等等，所以需要这个库提供；</p>
+</li>
+<li><p>istanbul：代码覆盖率计算工具；</p>
+</li>
+<li><p>coveralls：统计上面的代码测试覆盖率工具；</p>
+</li>
+<li><p>travis-ci：自动集成，比如master代码push到github上之后，travis-ci就会自动进行自动化测试。</p>
+</li>
+</ul>
+<p>这里介绍下jsdom的用法，当时按照几个文档来都跑不通：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> &#123;JSDOM&#125; = <span class="built_in">require</span>(<span class="string">'jsdom'</span>);</span><br><span class="line"><span class="keyword">const</span> &#123;<span class="built_in">window</span>&#125; = <span class="keyword">new</span> JSDOM(<span class="string">`&lt;!DOCTYPE html&gt;</span></span><br><span class="line"><span class="string">  &lt;html&gt;</span></span><br><span class="line"><span class="string">  &lt;head&gt;</span></span><br><span class="line"><span class="string">      &lt;meta charset="UTF-8"&gt;</span></span><br><span class="line"><span class="string">      &lt;meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0, maximum-scale=1.0,user-scalable=no"&gt;</span></span><br><span class="line"><span class="string">      &lt;meta name="author" content="吴胜斌,simbawu"&gt;</span></span><br><span class="line"><span class="string">      &lt;title&gt;数字键盘&lt;/title&gt;</span></span><br><span class="line"><span class="string">  &lt;/head&gt;</span></span><br><span class="line"><span class="string">  &lt;body&gt;</span></span><br><span class="line"><span class="string">  &lt;div id="values"&gt;&lt;/div&gt;</span></span><br><span class="line"><span class="string">  &lt;div id="app"&gt;&lt;/div&gt;</span></span><br><span class="line"><span class="string">  &lt;/body&gt;</span></span><br><span class="line"><span class="string">  &lt;/html&gt;`</span>);</span><br><span class="line"></span><br><span class="line">propagateToGlobal(<span class="built_in">window</span>);</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">propagateToGlobal</span>(<span class="params">window</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> key <span class="keyword">in</span> <span class="built_in">window</span>) &#123;</span><br><span class="line">    <span class="keyword">if</span> (!<span class="built_in">window</span>.hasOwnProperty(key)) <span class="keyword">continue</span>;</span><br><span class="line">    <span class="keyword">if</span> (key <span class="keyword">in</span> global) <span class="keyword">continue</span>;</span><br><span class="line">    global[key] = <span class="built_in">window</span>[key];</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>首先引入jsdom，然后构造一个document，并引入其中的window对象然后一一赋值给node的global对象。其实也很简单，只不过第一次接触，而且找的文档写的也不清楚，所以花了点时间。其他几个文档都还不错，可以看看文档再看看我是怎么用的。此时的package.json就很很丰富了，可以执行yarn test和yarn cover看看测试是否通过及测试覆盖率。</p>
+<h3 id="完善README-md"><a href="#完善README-md" class="headerlink" title="完善README.md"></a>完善README.md</h3><p>一个好的readme是决定用户用不用你项目的关键因素，所以要多花点心思，千万不能忽略。</p>
+<ul>
+<li><p>标题：直观的描述这个项目是干什么的。</p>
+</li>
+<li><p>徽章：<br>  分别表示是否构建成功、代码测试覆盖率、npm版本号、下载量、开源证书，看起来逼格满满有木有。推荐去shields io 添加，生成一次，之后会自动更新，不过需要等npm发布后才能搜到。<br>   <img src="https://tva1.sinaimg.cn/large/0082zybply1gc41yzgw8vj305m06kaac.jpg" alt=""></p>
+</li>
+</ul>
+<ul>
+<li><p>配图：要让用户直观的看到这个组件长什么样，是否满足他的需求。</p>
+</li>
+<li><p>API介绍：不能让用户猜。</p>
+</li>
+<li><p>使用示例：尽量降低使用门槛。</p>
+</li>
+</ul>
+<h2 id="发布"><a href="#发布" class="headerlink" title="发布"></a>发布</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#先登录NPM账号：</span></span><br><span class="line">npm login</span><br><span class="line"></span><br><span class="line"><span class="comment">#会依次让你输入用户名、密码、和邮箱</span></span><br><span class="line">Username: simbawu        </span><br><span class="line">Password:</span><br><span class="line">Email: (this IS public) wsbin610@163.com</span><br><span class="line"></span><br><span class="line"><span class="comment">#登录成功会出现以下提示信息：</span></span><br><span class="line">Logged <span class="keyword">in</span> as simbawu on https://registry.npmjs.org/.</span><br><span class="line"></span><br><span class="line"><span class="comment">#执行发布命令：</span></span><br><span class="line">npm publish</span><br><span class="line"></span><br><span class="line"><span class="comment">#发布成功后会出现以下提示信息：</span></span><br><span class="line">+ digital-keyboard@1.0.0</span><br><span class="line"><span class="comment">#这里digital-keyboard是我的NPM包名，1.0.0是包的版本号</span></span><br></pre></td></tr></table></figure>
+<p>接下来，我们可以在npm官网，通过搜索包名或者在个人中心看到刚刚发布的包。</p>
 
       
     </div>
@@ -484,11 +547,11 @@
         <ul class="post-copyright">
   <li class="post-copyright-author">
     <strong>本文作者：</strong>
-    Ma JinHui
+    吴胜斌
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="http://www.barebear.cn/Promise-map/" title="每日一题：如何处理Promise并发限流">http://www.barebear.cn/Promise-map/</a>
+    <a href="http://www.barebear.cn/web-advance/npm-package/" title="从0开始发布一个无依赖、高质量的 npm 包">http://www.barebear.cn/web-advance/npm-package/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>
@@ -505,7 +568,7 @@
           
             <a href="/tags/%E5%89%8D%E7%AB%AF/" rel="tag"># 前端</a>
           
-            <a href="/tags/javascript/" rel="tag"># javascript</a>
+            <a href="/tags/npm/" rel="tag"># npm</a>
           
         </div>
       
@@ -518,8 +581,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/web-frontend-resource/" rel="next" title="2020史上最全的web前端资源整合">
-                <i class="fa fa-chevron-left"></i> 2020史上最全的web前端资源整合
+              <a href="/web-advance/component/" rel="next" title="组件化">
+                <i class="fa fa-chevron-left"></i> 组件化
               </a>
             
           </div>
@@ -527,10 +590,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/git-tips/" rel="prev" title="Git的最佳实践">
-                Git的最佳实践 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -673,7 +732,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#提问"><span class="nav-number">1.</span> <span class="nav-text">提问</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#回答"><span class="nav-number">2.</span> <span class="nav-text">回答</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#写在前面"><span class="nav-number">1.</span> <span class="nav-text">写在前面</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#开始"><span class="nav-number">2.</span> <span class="nav-text">开始</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#基础模块代码"><span class="nav-number">2.1.</span> <span class="nav-text">基础模块代码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#注册npm账号"><span class="nav-number">2.2.</span> <span class="nav-text">注册npm账号</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#null"><span class="nav-number">2.3.</span> <span class="nav-text"></span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#添加单元测试"><span class="nav-number">2.4.</span> <span class="nav-text">添加单元测试</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#完善README-md"><span class="nav-number">2.5.</span> <span class="nav-text">完善README.md</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#发布"><span class="nav-number">3.</span> <span class="nav-text">发布</span></a></li></ol></div>
             
 
           </div>
