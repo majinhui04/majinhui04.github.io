@@ -1,0 +1,1305 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/favicon.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/favicon.png?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="前端," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="马金慧的博客" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="前端开发需要了解的一些工具，这些工具能够帮助你在项目开发中事半功倍。 1. nrm: npm registry 管理器registry: npm 远程仓库的地址。 由于众所周知的原因，npm 官方仓库在国内特别的慢，所以我们需要用一些替代性方案，一种方案就是切换 npm registry 到国内的镜像仓库。 所以，一般我们会这样做： 12# 切换到淘宝 npm 仓库npm config set r">
+<meta property="og:type" content="article">
+<meta property="og:title" content="前端开发需要了解的工具集合：webpack, eslint, prettier, ...">
+<meta property="og:url" content="http://www.barebear.cn/web-advance/tools/index.html">
+<meta property="og:site_name" content="马金慧的博客">
+<meta property="og:description" content="前端开发需要了解的一些工具，这些工具能够帮助你在项目开发中事半功倍。 1. nrm: npm registry 管理器registry: npm 远程仓库的地址。 由于众所周知的原因，npm 官方仓库在国内特别的慢，所以我们需要用一些替代性方案，一种方案就是切换 npm registry 到国内的镜像仓库。 所以，一般我们会这样做： 12# 切换到淘宝 npm 仓库npm config set r">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/0082zybply1gc43g2id1dj317w0fqdjl.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/0082zybply1gc43gsdyyjj31a00u0q92.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/0082zybply1gc43itu0ocj31d60u07m6.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/0082zybply1gc43kan2s2j30k008ujsn.jpg">
+<meta property="article:published_time" content="2020-02-21T08:55:56.000Z">
+<meta property="article:modified_time" content="2020-02-21T08:25:41.000Z">
+<meta property="article:author" content="Ma JinHui">
+<meta property="article:tag" content="前端">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://tva1.sinaimg.cn/large/0082zybply1gc43g2id1dj317w0fqdjl.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://www.barebear.cn/web-advance/tools/"/>
+
+
+
+
+
+  <title>前端开发需要了解的工具集合：webpack, eslint, prettier, ... | 马金慧的博客</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?72ef98efd91761396d14aa2f920ca0c6";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">马金慧的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description">斯人如彩虹，遇上方知有</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.barebear.cn/web-advance/tools/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Ma JinHui">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/assets/img/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="马金慧的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">前端开发需要了解的工具集合：webpack, eslint, prettier, ...</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-02-21T16:55:56+08:00">
+                2020-02-21
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2020-02-21T16:25:41+08:00">
+                2020-02-21
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%89%8D%E7%AB%AF%E8%BF%9B%E9%98%B6/" itemprop="url" rel="index">
+                    <span itemprop="name">前端进阶</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            </span>
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  1.7k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  6
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>前端开发需要了解的一些工具，这些工具能够帮助你在项目开发中事半功倍。</p>
+<h2 id="1-nrm-npm-registry-管理器"><a href="#1-nrm-npm-registry-管理器" class="headerlink" title="1. nrm: npm registry 管理器"></a>1. <a href="https://github.com/Pana/nrm" target="_blank" rel="noopener">nrm</a>: <code>npm</code> registry 管理器</h2><p><code>registry</code>: <code>npm</code> 远程仓库的地址。</p>
+<p>由于众所周知的原因，<code>npm</code> 官方仓库在国内特别的慢，所以我们需要用一些替代性方案，一种方案就是切换 <code>npm</code> registry 到国内的镜像仓库。</p>
+<p>所以，一般我们会这样做：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># 切换到淘宝 npm 仓库</span><br><span class="line">npm config set registry https:&#x2F;&#x2F;registry.npm.taobao.org&#x2F;</span><br></pre></td></tr></table></figure>
+
+<p>但是这样做会比较麻烦，因为切换的时候得记住 registry 的 url 地址。所以就需要 <a href="https://github.com/Pana/nrm" target="_blank" rel="noopener">nrm</a> 来管理 <code>npm</code> registry。</p>
+<a id="more"></a>
+
+<h4 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g nrm</span><br></pre></td></tr></table></figure>
+
+<h4 id="内置的-registry"><a href="#内置的-registry" class="headerlink" title="内置的 registry"></a>内置的 registry</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">npm ---- https:&#x2F;&#x2F;registry.npmjs.org&#x2F;</span><br><span class="line">cnpm --- http:&#x2F;&#x2F;r.cnpmjs.org&#x2F;</span><br><span class="line">taobao - https:&#x2F;&#x2F;registry.npm.taobao.org&#x2F;</span><br><span class="line">nj ----- https:&#x2F;&#x2F;registry.nodejitsu.com&#x2F;</span><br><span class="line">rednpm - http:&#x2F;&#x2F;registry.mirror.cqupt.edu.cn&#x2F;</span><br><span class="line">npmMirror  https:&#x2F;&#x2F;skimdb.npmjs.com&#x2F;registry&#x2F;</span><br><span class="line">edunpm - http:&#x2F;&#x2F;registry.enpmjs.org&#x2F;</span><br></pre></td></tr></table></figure>
+
+<h4 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"># 切换到 taobao registry</span><br><span class="line">nrm use taobao</span><br><span class="line"></span><br><span class="line"># 切换到 npm 官方 registry</span><br><span class="line">nrm use npm</span><br><span class="line"></span><br><span class="line"># 添加自己的 registry</span><br><span class="line">nrm add yourName yourRegistry</span><br></pre></td></tr></table></figure>
+
+<h2 id="2-cnpm-使用国内镜像仓库的-npm-客户端"><a href="#2-cnpm-使用国内镜像仓库的-npm-客户端" class="headerlink" title="2. cnpm: 使用国内镜像仓库的 npm 客户端"></a>2. <a href="https://github.com/cnpm/cnpm" target="_blank" rel="noopener">cnpm</a>: 使用国内镜像仓库的 <code>npm</code> 客户端</h2><p>相当于是 <a href="https://github.com/npm/npm" target="_blank" rel="noopener">npm</a> 的一个克隆版本，它的命令中除了 <code>publish</code> 之外，其他的与 <code>npm</code> 的命令一致。内部默认使用的是国内的 <code>npm</code> 代码仓库 <a href="https://cnpmjs.org/" target="_blank" rel="noopener">https://cnpmjs.org/</a>，当然你也可以改为自己的。</p>
+<p>如果你不喜欢使用 <a href="https://github.com/Pana/nrm" target="_blank" rel="noopener">nrm</a> 切换 <code>npm</code> registry，可以把 <code>npm</code> 和 <code>cnpm</code> 这两者一起用。</p>
+<p>另外，它一般还会和 <a href="https://github.com/cnpm/cnpmjs.org" target="_blank" rel="noopener">cnpmjs.org</a> 配合使用。</p>
+<h4 id="安装-1"><a href="#安装-1" class="headerlink" title="安装"></a>安装</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g cnpm</span><br></pre></td></tr></table></figure>
+
+<h2 id="3-yarn-类似-npm-的依赖管理工具"><a href="#3-yarn-类似-npm-的依赖管理工具" class="headerlink" title="3. yarn: 类似 npm 的依赖管理工具"></a>3. <a href="https://github.com/yarnpkg/yarn" target="_blank" rel="noopener">yarn</a>: 类似 <code>npm</code> 的依赖管理工具</h2><p>类似 <code>npm</code> 的依赖管理工具，但 <code>yarn</code> 缓存了每个下载过的包，所以再次使用时无需重复下载，同时利用并行下载以最大化资源利用率，因此安装速度更快。</p>
+<p>并且在开发 <a href="https://github.com/facebook/react-native" target="_blank" rel="noopener">react-native</a> 应用程序时，是强烈建议使用 <a href="https://github.com/yarnpkg/yarn" target="_blank" rel="noopener">yarn</a> 的，因为如果非要用 npm, 必须使用 npm &lt; 5 版本。</p>
+<h4 id="安装-2"><a href="#安装-2" class="headerlink" title="安装"></a>安装</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g yarn</span><br></pre></td></tr></table></figure>
+
+<h2 id="4-webpack-前端打包工具"><a href="#4-webpack-前端打包工具" class="headerlink" title="4. webpack: 前端打包工具"></a>4. <a href="https://github.com/webpack/webpack" target="_blank" rel="noopener">webpack</a>: 前端打包工具</h2><p>现在前端打包基本上都会用 <a href="https://github.com/webpack/webpack" target="_blank" rel="noopener">webpack</a>，它不仅能打包源代码文件（如 <code>js, css, html, ts, ...</code>），还能打包静态资源文件（如 <code>images, fonts, ...</code>），并且还能打包按需加载 SPA 应用。总之，<code>webpack</code> 是前端打包的不二选择。</p>
+<h4 id="安装-3"><a href="#安装-3" class="headerlink" title="安装"></a>安装</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"># 全局</span><br><span class="line">npm install -g webpack</span><br><span class="line"></span><br><span class="line"># 本地</span><br><span class="line">npm install --save-dev webpack</span><br></pre></td></tr></table></figure>
+
+<h2 id="5-babel-es6-gt-es5-转码器"><a href="#5-babel-es6-gt-es5-转码器" class="headerlink" title="5. babel: es6 -&gt; es5 转码器"></a>5. <a href="https://github.com/babel/babel" target="_blank" rel="noopener">babel</a>: es6 -&gt; es5 转码器</h2><p>有 <a href="https://github.com/babel/babel" target="_blank" rel="noopener">babel</a> 在，你就可以写最新版的 JavaScript 语法（<code>es6, es7, es2015, ...</code>），然后由 <code>babel</code> 把你的源代码转码成你所需要的 JavaScript 语法，比如浏览器端运行的 <code>es5</code>。<code>babel</code> 一般都是配合 <a href="https://github.com/webpack/webpack" target="_blank" rel="noopener">webpack</a>、<a href="https://github.com/rollup/rollup" target="_blank" rel="noopener">rollup</a>、<a href="https://github.com/parcel-bundler/parcel" target="_blank" rel="noopener">parcel</a> 等打包构建工具一起使用，详细参考 <a href="https://babeljs.io/en/setup" target="_blank" rel="noopener">babel - setup</a>。</p>
+<h4 id="安装-4"><a href="#安装-4" class="headerlink" title="安装"></a>安装</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"># 全局</span><br><span class="line">npm install -g babel-cli</span><br><span class="line"></span><br><span class="line"># 本地</span><br><span class="line">npm install --save-dev babel-cli</span><br></pre></td></tr></table></figure>
+
+<h2 id="6-eslint-js-语法（包括-jsx-语法）检查与矫正"><a href="#6-eslint-js-语法（包括-jsx-语法）检查与矫正" class="headerlink" title="6. eslint: js 语法（包括 jsx 语法）检查与矫正"></a>6. <a href="https://github.com/eslint/eslint" target="_blank" rel="noopener">eslint</a>: js 语法（包括 jsx 语法）检查与矫正</h2><p>这个工具能够检查 js 语法（包括 jsx 语法），然后最大程度的矫正不符合规范的代码。对于提升个人代码质量，保证团队代码规范和代码风格是相当有用的。</p>
+<p><a href="https://github.com/eslint/eslint" target="_blank" rel="noopener">eslint</a> 一般会配合 <a href="https://github.com/typicode/husky" target="_blank" rel="noopener">husky</a> 与 <a href="https://github.com/okonet/lint-staged" target="_blank" rel="noopener">lint-staged</a> 一起使用。详细用法可以参考 <a href="/12.md">怎样提升代码质量</a>。</p>
+<h4 id="安装-5"><a href="#安装-5" class="headerlink" title="安装"></a>安装</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"># 全局</span><br><span class="line">npm install -g eslint</span><br><span class="line"></span><br><span class="line"># 本地</span><br><span class="line">npm install --save-dev eslint</span><br></pre></td></tr></table></figure>
+
+<h2 id="7-stylelint-css-语法（包括-less-scss-语法）检查与矫正"><a href="#7-stylelint-css-语法（包括-less-scss-语法）检查与矫正" class="headerlink" title="7. stylelint: css 语法（包括 less, scss 语法）检查与矫正"></a>7. <a href="https://github.com/stylelint/stylelint" target="_blank" rel="noopener">stylelint</a>: css 语法（包括 less, scss 语法）检查与矫正</h2><p>这个工具能够检查 css 语法（包括 less, scss 语法），然后最大程度的矫正不符合规范的代码。对于提升个人代码质量，保证团队代码规范和代码风格是相当有用的。</p>
+<p><a href="https://github.com/stylelint/stylelint" target="_blank" rel="noopener">stylelint</a> 一般会配合 <a href="https://github.com/typicode/husky" target="_blank" rel="noopener">husky</a> 与 <a href="https://github.com/okonet/lint-staged" target="_blank" rel="noopener">lint-staged</a> 一起使用。详细用法可以参考 <a href="/12.md">怎样提升代码质量</a>。</p>
+<h4 id="安装-6"><a href="#安装-6" class="headerlink" title="安装"></a>安装</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"># 全局</span><br><span class="line">npm install -g stylelint</span><br><span class="line"></span><br><span class="line"># 本地</span><br><span class="line">npm install --save-dev stylelint</span><br></pre></td></tr></table></figure>
+
+<h2 id="8-prettier-代码格式优化"><a href="#8-prettier-代码格式优化" class="headerlink" title="8. prettier: 代码格式优化"></a>8. <a href="https://github.com/prettier/prettier" target="_blank" rel="noopener">prettier</a>: 代码格式优化</h2><p>这个工具能够优化 <code>js, jsx, ts, css, less, scss, json, md, ...</code>，对于保证团队代码风格是相当有用的。</p>
+<p><a href="https://github.com/prettier/prettier" target="_blank" rel="noopener">prettier</a> 一般会配合 <a href="https://github.com/typicode/husky" target="_blank" rel="noopener">husky</a> 与 <a href="https://github.com/okonet/lint-staged" target="_blank" rel="noopener">lint-staged</a> 一起使用。详细用法可以参考 <a href="/12.md">怎样提升代码质量</a>。</p>
+<h4 id="安装-7"><a href="#安装-7" class="headerlink" title="安装"></a>安装</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"># 全局</span><br><span class="line">npm install -g prettier</span><br><span class="line"></span><br><span class="line"># 本地</span><br><span class="line">npm install --save-dev prettier</span><br></pre></td></tr></table></figure>
+
+<h2 id="9-gulp-基于流的自动化构建工具"><a href="#9-gulp-基于流的自动化构建工具" class="headerlink" title="9. gulp: 基于流的自动化构建工具"></a>9. <a href="https://github.com/gulpjs/gulp" target="_blank" rel="noopener">gulp</a>: 基于流的自动化构建工具</h2><p>在 <a href="https://github.com/webpack/webpack" target="_blank" rel="noopener">webpack</a> 出现之前，前端的构建任务很多都是由 <a href="https://github.com/gulpjs/gulp" target="_blank" rel="noopener">gulp</a> 来完成的。<code>webpack</code> 出现之后，<code>gulp</code> 在打包构建这一块功能则退居二线，但是 <code>webpack</code> 只负责代码打包，很多其他工作还是由 <code>gulp</code> 来完成，比如上传打包文件到服务器，让打包文件进行更多流操作等。所以，很多情况下都是 <code>gulp</code> 与 <code>webpack</code> 配合使用。</p>
+<h4 id="安装-8"><a href="#安装-8" class="headerlink" title="安装"></a>安装</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"># 全局</span><br><span class="line">npm install -g gulp</span><br><span class="line"></span><br><span class="line"># 本地</span><br><span class="line">npm install --save-dev gulp</span><br></pre></td></tr></table></figure>
+
+<h2 id="10-jest-js-测试库"><a href="#10-jest-js-测试库" class="headerlink" title="10. jest: js 测试库"></a>10. <a href="https://github.com/facebook/jest" target="_blank" rel="noopener">jest</a>: js 测试库</h2><p>在 Facebook 内部，包括 <a href="https://github.com/facebook/react" target="_blank" rel="noopener">react</a> 应用在内的所有 JavaScript 代码都是用 <a href="https://github.com/facebook/jest" target="_blank" rel="noopener">jest</a> 来测试的。它的一个理念就是提供一套完整集成的 “零配置” 测试体验。所以，使用 <code>jest</code> 来测试 JavaScript 是一件很愉快的事情。</p>
+<h4 id="安装-9"><a href="#安装-9" class="headerlink" title="安装"></a>安装</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install --save-dev jest</span><br></pre></td></tr></table></figure>
+
+<h2 id="11-enzyme-react-组件测试库"><a href="#11-enzyme-react-组件测试库" class="headerlink" title="11. enzyme: react 组件测试库"></a>11. <a href="https://github.com/airbnb/enzyme" target="_blank" rel="noopener">enzyme</a>: <a href="https://github.com/facebook/react" target="_blank" rel="noopener">react</a> 组件测试库</h2><p><a href="https://github.com/facebook/jest" target="_blank" rel="noopener">jest</a> 只是单纯用来测试 JavaScript 的，而 <code>react</code> 组件的测试，就需要用到 airbnb 出品的 <a href="https://github.com/airbnb/enzyme" target="_blank" rel="noopener">enzyme</a> 了。一般 <code>enzyme</code> 会和 <code>jest</code> 一起使用。</p>
+<h4 id="安装-10"><a href="#安装-10" class="headerlink" title="安装"></a>安装</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install --save-dev enzyme enzyme-adapter-react-16</span><br></pre></td></tr></table></figure>
+
+<h2 id="12-react-devtools-chrome-开发者工具插件-for-react"><a href="#12-react-devtools-chrome-开发者工具插件-for-react" class="headerlink" title="12. react-devtools: chrome 开发者工具插件 for react"></a>12. <a href="https://github.com/facebook/react-devtools" target="_blank" rel="noopener">react-devtools</a>: chrome 开发者工具插件 for <a href="https://github.com/facebook/react" target="_blank" rel="noopener">react</a></h2><p>这是专门针对 <a href="https://github.com/facebook/react" target="_blank" rel="noopener">react</a> 组件开发的 chrome 开发者工具插件，就像开发者工具的 <code>Elements</code> 一样，可以查看整个页面的 <code>react</code> 组件树和每个组件的属性和状态，并且可以动态的更改属性和状态，然后会更新 UI 到应用上。</p>
+<p><img src="https://tva1.sinaimg.cn/large/0082zybply1gc43g2id1dj317w0fqdjl.jpg" alt=""></p>
+<h4 id="安装-11"><a href="#安装-11" class="headerlink" title="安装"></a>安装</h4><p>通过 chrome 应用商店安装 <a href="https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi" target="_blank" rel="noopener">chrome - react-developer-tools</a>.</p>
+<p>其他安装方式查看 <a href="https://github.com/facebook/react-devtools" target="_blank" rel="noopener">react-devtools</a>.</p>
+<h2 id="13-redux-devtools-与-redux-devtools-extension-chrome-开发者工具插件-for-redux"><a href="#13-redux-devtools-与-redux-devtools-extension-chrome-开发者工具插件-for-redux" class="headerlink" title="13. redux-devtools 与 redux-devtools-extension: chrome 开发者工具插件 for redux"></a>13. <a href="https://github.com/reduxjs/redux-devtools" target="_blank" rel="noopener">redux-devtools</a> 与 <a href="https://github.com/zalmoxisus/redux-devtools-extension" target="_blank" rel="noopener">redux-devtools-extension</a>: chrome 开发者工具插件 for <a href="https://github.com/reduxjs/redux" target="_blank" rel="noopener">redux</a></h2><p>这是专门针对 <a href="https://github.com/reduxjs/redux" target="_blank" rel="noopener">redux</a> 开发的 chrome 开发者工具插件，就像 <a href="https://github.com/facebook/react-devtools" target="_blank" rel="noopener">react-devtools</a> 一样，可以查看整个页面的 <code>redux</code> store 及其变化，并且可以动态的派发 <code>action</code>，然后会更新 UI 到应用上。</p>
+<h4 id="13-1-安装-redux-devtools"><a href="#13-1-安装-redux-devtools" class="headerlink" title="13.1 安装 redux-devtools"></a>13.1 安装 <a href="https://github.com/reduxjs/redux-devtools" target="_blank" rel="noopener">redux-devtools</a></h4><p>这种安装方式，<code>redux-devtools</code> 会嵌入到页面中，成为页面的一部分。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">npm install --save-dev redux-devtools</span><br><span class="line"></span><br><span class="line"># 还可以安装</span><br><span class="line">npm install --save-dev redux-devtools-log-monitor</span><br><span class="line">npm install --save-dev redux-devtools-dock-monitor</span><br></pre></td></tr></table></figure>
+
+<p>更多信息参考 <a href="https://github.com/reduxjs/redux-devtools/blob/master/docs/Walkthrough.md" target="_blank" rel="noopener">redux-devtools - Walkthrough</a>.</p>
+<p><img src="https://tva1.sinaimg.cn/large/0082zybply1gc43gsdyyjj31a00u0q92.jpg" alt=""></p>
+<h4 id="13-2-安装-redux-devtools-extension"><a href="#13-2-安装-redux-devtools-extension" class="headerlink" title="13.2 安装 redux-devtools-extension"></a>13.2 安装 <a href="https://github.com/zalmoxisus/redux-devtools-extension" target="_blank" rel="noopener">redux-devtools-extension</a></h4><p>这种安装方式是成为浏览器开发者工具的一个插件。</p>
+<p>通过 chrome 应用商店安装 <a href="https://chrome.google.com/webstore/detail/redux-devtools/lmhkpmbekcpmknklioeibfkpmmfibljd" target="_blank" rel="noopener">chrome - redux-devtools</a>.</p>
+<p>其他安装方式查看 <a href="https://github.com/zalmoxisus/redux-devtools-extension" target="_blank" rel="noopener">redux-devtools-extension</a>.</p>
+<p><img src="https://tva1.sinaimg.cn/large/0082zybply1gc43itu0ocj31d60u07m6.jpg" alt=""></p>
+<h2 id="14-vue-devtools-chrome-开发者工具插件-for-vue"><a href="#14-vue-devtools-chrome-开发者工具插件-for-vue" class="headerlink" title="14. vue-devtools: chrome 开发者工具插件 for vue"></a>14. <a href="https://github.com/vuejs/vue-devtools" target="_blank" rel="noopener">vue-devtools</a>: chrome 开发者工具插件 for <a href="https://github.com/vuejs/vue" target="_blank" rel="noopener">vue</a></h2><p>这是专门针对 <a href="https://github.com/vuejs/vue" target="_blank" rel="noopener">vue</a> 组件开发的 chrome 开发者工具插件，就像开发者工具的 <code>Elements</code> 一样，可以查看整个页面的 <code>vue</code> 组件树和每个组件的 <code>data</code>，并且可以动态的更改 <code>data</code>，然后会更新 UI 到应用上。</p>
+<p><img src="https://tva1.sinaimg.cn/large/0082zybply1gc43kan2s2j30k008ujsn.jpg" alt=""></p>
+<h4 id="安装-12"><a href="#安装-12" class="headerlink" title="安装"></a>安装</h4><p>通过 chrome 应用商店安装 <a href="https://chrome.google.com/webstore/detail/vuejs-devtools/nhdogjmejiglipccpnnnanhbledajbpd" target="_blank" rel="noopener">chrome - vuejs-devtools</a>.</p>
+<p>其他安装方式查看 <a href="https://github.com/vuejs/vue-devtools" target="_blank" rel="noopener">vue-devtools</a>.</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div></div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/assets/img/wepay.jpg" alt="Ma JinHui 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/assets/img/alipay.jpg" alt="Ma JinHui 支付宝"/>
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    深予之 (@senntyou)
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://www.barebear.cn/web-advance/tools/" title="前端开发需要了解的工具集合：webpack, eslint, prettier, ...">http://www.barebear.cn/web-advance/tools/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/%E5%89%8D%E7%AB%AF/" rel="tag"># 前端</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/web-advance/storybook/" rel="next" title="react、vue 组件开发利器：storybook">
+                <i class="fa fa-chevron-left"></i> react、vue 组件开发利器：storybook
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/web-advance/branch/" rel="prev" title="web 项目如何进行 git 多人协作开发">
+                web 项目如何进行 git 多人协作开发 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/assets/img/avatar.jpg"
+                alt="Ma JinHui" />
+            
+              <p class="site-author-name" itemprop="name">Ma JinHui</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">32</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">13</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-nrm-npm-registry-管理器"><span class="nav-number">1.</span> <span class="nav-text">1. nrm: npm registry 管理器</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#安装"><span class="nav-number">1.0.1.</span> <span class="nav-text">安装</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#内置的-registry"><span class="nav-number">1.0.2.</span> <span class="nav-text">内置的 registry</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#使用"><span class="nav-number">1.0.3.</span> <span class="nav-text">使用</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-cnpm-使用国内镜像仓库的-npm-客户端"><span class="nav-number">2.</span> <span class="nav-text">2. cnpm: 使用国内镜像仓库的 npm 客户端</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#安装-1"><span class="nav-number">2.0.1.</span> <span class="nav-text">安装</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-yarn-类似-npm-的依赖管理工具"><span class="nav-number">3.</span> <span class="nav-text">3. yarn: 类似 npm 的依赖管理工具</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#安装-2"><span class="nav-number">3.0.1.</span> <span class="nav-text">安装</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-webpack-前端打包工具"><span class="nav-number">4.</span> <span class="nav-text">4. webpack: 前端打包工具</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#安装-3"><span class="nav-number">4.0.1.</span> <span class="nav-text">安装</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-babel-es6-gt-es5-转码器"><span class="nav-number">5.</span> <span class="nav-text">5. babel: es6 -&gt; es5 转码器</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#安装-4"><span class="nav-number">5.0.1.</span> <span class="nav-text">安装</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-eslint-js-语法（包括-jsx-语法）检查与矫正"><span class="nav-number">6.</span> <span class="nav-text">6. eslint: js 语法（包括 jsx 语法）检查与矫正</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#安装-5"><span class="nav-number">6.0.1.</span> <span class="nav-text">安装</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-stylelint-css-语法（包括-less-scss-语法）检查与矫正"><span class="nav-number">7.</span> <span class="nav-text">7. stylelint: css 语法（包括 less, scss 语法）检查与矫正</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#安装-6"><span class="nav-number">7.0.1.</span> <span class="nav-text">安装</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-prettier-代码格式优化"><span class="nav-number">8.</span> <span class="nav-text">8. prettier: 代码格式优化</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#安装-7"><span class="nav-number">8.0.1.</span> <span class="nav-text">安装</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#9-gulp-基于流的自动化构建工具"><span class="nav-number">9.</span> <span class="nav-text">9. gulp: 基于流的自动化构建工具</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#安装-8"><span class="nav-number">9.0.1.</span> <span class="nav-text">安装</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#10-jest-js-测试库"><span class="nav-number">10.</span> <span class="nav-text">10. jest: js 测试库</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#安装-9"><span class="nav-number">10.0.1.</span> <span class="nav-text">安装</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#11-enzyme-react-组件测试库"><span class="nav-number">11.</span> <span class="nav-text">11. enzyme: react 组件测试库</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#安装-10"><span class="nav-number">11.0.1.</span> <span class="nav-text">安装</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#12-react-devtools-chrome-开发者工具插件-for-react"><span class="nav-number">12.</span> <span class="nav-text">12. react-devtools: chrome 开发者工具插件 for react</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#安装-11"><span class="nav-number">12.0.1.</span> <span class="nav-text">安装</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#13-redux-devtools-与-redux-devtools-extension-chrome-开发者工具插件-for-redux"><span class="nav-number">13.</span> <span class="nav-text">13. redux-devtools 与 redux-devtools-extension: chrome 开发者工具插件 for redux</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#13-1-安装-redux-devtools"><span class="nav-number">13.0.1.</span> <span class="nav-text">13.1 安装 redux-devtools</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#13-2-安装-redux-devtools-extension"><span class="nav-number">13.0.2.</span> <span class="nav-text">13.2 安装 redux-devtools-extension</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#14-vue-devtools-chrome-开发者工具插件-for-vue"><span class="nav-number">14.</span> <span class="nav-text">14. vue-devtools: chrome 开发者工具插件 for vue</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#安装-12"><span class="nav-number">14.0.1.</span> <span class="nav-text">安装</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">浙ICP备19031752号</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count">45.7k</span>
+  
+</div>
+
+
+
+
+
+
+<!-- 网站运行时间的设置 -->
+<span id="timeDate">载入天数...</span>
+<span id="times">载入时分秒...</span>
+<script>
+    var now = new Date();
+    function createtime() {
+        var grt= new Date("01/08/2020 12:30:32");//此处修改你的建站时间或者网站上线时间
+        now.setTime(now.getTime()+250);
+        days = (now - grt ) / 1000 / 60 / 60 / 24; dnum = Math.floor(days);
+        hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum); hnum = Math.floor(hours);
+        if(String(hnum).length ==1 ){hnum = "0" + hnum;} minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum);
+        mnum = Math.floor(minutes); if(String(mnum).length ==1 ){mnum = "0" + mnum;}
+        seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
+        snum = Math.round(seconds); if(String(snum).length ==1 ){snum = "0" + snum;}
+        document.getElementById("timeDate").innerHTML = "本站已安全运行 "+dnum+" 天 ";
+        document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒";
+    }
+setInterval("createtime()",250);
+</script>
+
+
+        
+<div class="busuanzi-count">
+  <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

@@ -1,0 +1,1363 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/favicon.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/favicon.png?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="前端,npm," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="马金慧的博客" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="package.json 官方字段请参考 https:&#x2F;&#x2F;docs.npmjs.com&#x2F;files&#x2F;package.json。下面介绍的是非官方字段，也就是各种工具定义的相关字段。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="package.json 非官方字段集合">
+<meta property="og:url" content="http://www.barebear.cn/web-extend/package/index.html">
+<meta property="og:site_name" content="马金慧的博客">
+<meta property="og:description" content="package.json 官方字段请参考 https:&#x2F;&#x2F;docs.npmjs.com&#x2F;files&#x2F;package.json。下面介绍的是非官方字段，也就是各种工具定义的相关字段。">
+<meta property="article:published_time" content="2020-02-21T09:15:56.000Z">
+<meta property="article:modified_time" content="2020-02-21T08:48:03.000Z">
+<meta property="article:author" content="Ma JinHui">
+<meta property="article:tag" content="前端">
+<meta property="article:tag" content="npm">
+<meta name="twitter:card" content="summary">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://www.barebear.cn/web-extend/package/"/>
+
+
+
+
+
+  <title>package.json 非官方字段集合 | 马金慧的博客</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?72ef98efd91761396d14aa2f920ca0c6";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">马金慧的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description">斯人如彩虹，遇上方知有</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.barebear.cn/web-extend/package/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Ma JinHui">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/assets/img/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="马金慧的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">package.json 非官方字段集合</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-02-21T17:15:56+08:00">
+                2020-02-21
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2020-02-21T16:48:03+08:00">
+                2020-02-21
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%89%8D%E7%AB%AF%E8%BF%9B%E9%98%B6/" itemprop="url" rel="index">
+                    <span itemprop="name">前端进阶</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            </span>
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  1.5k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  6
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><code>package.json</code> 官方字段请参考 <a href="https://docs.npmjs.com/files/package.json" target="_blank" rel="noopener">https://docs.npmjs.com/files/package.json</a>。下面介绍的是非官方字段，也就是各种工具定义的相关字段。</p>
+<a id="more"></a>
+
+<h2 id="1-yarn-相关字段"><a href="#1-yarn-相关字段" class="headerlink" title="1. yarn 相关字段"></a>1. <a href="https://github.com/yarnpkg/yarn" target="_blank" rel="noopener">yarn</a> 相关字段</h2><p><a href="https://github.com/yarnpkg/yarn" target="_blank" rel="noopener">yarn</a>: 类似 <code>npm</code> 的依赖管理工具，但 <code>yarn</code> 缓存了每个下载过的包，所以再次使用时无需重复下载，同时利用并行下载以最大化资源利用率，因此安装速度更快。</p>
+<h3 id="flat"><a href="#flat" class="headerlink" title="flat"></a><code>flat</code></h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  &quot;flat&quot;: true</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>如果你的包只允许给定依赖的一个版本，你想强制和命令行上 <code>yarn install --flat</code> 相同的行为，把这个值设为 <code>true</code>。</p>
+<p>详细参考 <a href="https://yarnpkg.com/zh-Hans/docs/package-json#toc-flat" target="_blank" rel="noopener">yarn - flat</a>.</p>
+<h3 id="resolutions"><a href="#resolutions" class="headerlink" title="resolutions"></a><code>resolutions</code></h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  &quot;resolutions&quot;: &#123;</span><br><span class="line">    &quot;transitive-package-1&quot;: &quot;0.0.29&quot;,</span><br><span class="line">    &quot;transitive-package-2&quot;: &quot;file:.&#x2F;local-forks&#x2F;transitive-package-2&quot;,</span><br><span class="line">    &quot;dependencies-package-1&#x2F;transitive-package-3&quot;: &quot;^2.1.1&quot;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>允许你覆盖特定嵌套依赖项的版本。有关完整规范，请参见<a href="https://github.com/yarnpkg/rfcs/blob/master/implemented/0000-selective-versions-resolutions.md" target="_blank" rel="noopener">选择性版本解析 RFC</a>。</p>
+<p>详细参考 <a href="https://yarnpkg.com/zh-Hans/docs/package-json#toc-resolutions" target="_blank" rel="noopener">yarn - resolutions</a>.</p>
+<h2 id="2-unpkg-相关字段"><a href="#2-unpkg-相关字段" class="headerlink" title="2. unpkg 相关字段"></a>2. <a href="https://github.com/unpkg/unpkg.com" target="_blank" rel="noopener">unpkg</a> 相关字段</h2><p><a href="https://github.com/unpkg/unpkg.com" target="_blank" rel="noopener">unpkg</a>: 让 <code>npm</code> 上所有的文件都开启 <code>cdn</code> 服务。</p>
+<h3 id="unpkg"><a href="#unpkg" class="headerlink" title="unpkg"></a><code>unpkg</code></h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># jquery</span><br><span class="line">&#123;</span><br><span class="line">  &quot;unpkg&quot;: &quot;dist&#x2F;jquery.js&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>正常情况下，访问 <code>jquery</code> 的发布文件通过 <code>https://unpkg.com/jquery@3.3.1/dist/jquery.js</code>，当你使用省略的 url <code>https://unpkg.com/jquery</code> 时，便会按照如下的方式获取文件：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"># [latestVersion] 指最新版本号，pkg 指 package.json</span><br><span class="line"></span><br><span class="line"># 定义了 unpkg 属性时</span><br><span class="line">https:&#x2F;&#x2F;unpkg.com&#x2F;jquery@[latestVersion]&#x2F;[pkg.unpkg]</span><br><span class="line"></span><br><span class="line"># 未定义 unpkg 属性时，将回退到 main 属性</span><br><span class="line">https:&#x2F;&#x2F;unpkg.com&#x2F;jquery@[latestVersion]&#x2F;[pkg.main]</span><br></pre></td></tr></table></figure>
+
+<p>详细参考 <a href="https://unpkg.com" target="_blank" rel="noopener">https://unpkg.com</a>.</p>
+<h2 id="3-TypeScript-相关字段"><a href="#3-TypeScript-相关字段" class="headerlink" title="3. TypeScript 相关字段"></a>3. <a href="https://github.com/Microsoft/TypeScript" target="_blank" rel="noopener">TypeScript</a> 相关字段</h2><p><a href="https://github.com/Microsoft/TypeScript" target="_blank" rel="noopener">TypeScript</a>: <code>JavaScript</code> 的超集</p>
+<h3 id="types-typings"><a href="#types-typings" class="headerlink" title="types, typings"></a><code>types</code>, <code>typings</code></h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  &quot;main&quot;: &quot;.&#x2F;lib&#x2F;main.js&quot;,</span><br><span class="line">  &quot;types&quot;: &quot;.&#x2F;lib&#x2F;main.d.ts&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>就像 <code>main</code> 字段一样，定义一个针对 <code>TypeScript</code> 的入口文件。</p>
+<p>详细参考 <a href="https://www.typescriptlang.org/docs/handbook/declaration-files/publishing.html" target="_blank" rel="noopener">TypeScript documentation</a>.</p>
+<h2 id="4-browserslist-相关字段"><a href="#4-browserslist-相关字段" class="headerlink" title="4. browserslist 相关字段"></a>4. <a href="https://github.com/browserslist/browserslist" target="_blank" rel="noopener">browserslist</a> 相关字段</h2><p><a href="https://github.com/browserslist/browserslist" target="_blank" rel="noopener">browserslist</a>: 设置项目的浏览器兼容情况。</p>
+<h3 id="browserslist"><a href="#browserslist" class="headerlink" title="browserslist"></a><code>browserslist</code></h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  &quot;browserslist&quot;: [</span><br><span class="line">    &quot;&gt; 1%&quot;,</span><br><span class="line">    &quot;last 2 versions&quot;</span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>支持的工具：</p>
+<ul>
+<li><a href="https://github.com/postcss/autoprefixer" target="_blank" rel="noopener">Autoprefixer</a></li>
+<li><a href="https://github.com/babel/babel/tree/master/packages/babel-preset-env" target="_blank" rel="noopener">Babel</a></li>
+<li><a href="https://github.com/jonathantneal/postcss-preset-env" target="_blank" rel="noopener">postcss-preset-env</a></li>
+<li><a href="https://github.com/amilajack/eslint-plugin-compat" target="_blank" rel="noopener">eslint-plugin-compat</a></li>
+<li><a href="https://github.com/ismay/stylelint-no-unsupported-browser-features" target="_blank" rel="noopener">stylelint-no-unsupported-browser-features</a></li>
+<li><a href="https://github.com/jonathantneal/postcss-normalize" target="_blank" rel="noopener">postcss-normalize</a></li>
+</ul>
+<p>详细参考 <a href="https://github.com/browserslist/browserslist" target="_blank" rel="noopener">browserslist</a>.</p>
+<h2 id="5-发行打包相关字段"><a href="#5-发行打包相关字段" class="headerlink" title="5. 发行打包相关字段"></a>5. 发行打包相关字段</h2><p>点击 <a href="http://2ality.com/2017/04/setting-up-multi-platform-packages.html#support-by-bundlers" target="_blank" rel="noopener">Setting up multi-platform npm packages</a> 查看相关介绍。</p>
+<h3 id="module"><a href="#module" class="headerlink" title="module"></a><code>module</code></h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  &quot;main&quot;: &quot;.&#x2F;lib&#x2F;main.js&quot;,</span><br><span class="line">  &quot;module&quot;: &quot;.&#x2F;lib&#x2F;main.m.js&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>就像 <code>main</code> 字段一样，定义一个针对 <code>es6</code> 模块及语法的入口文件。</p>
+<p>构建工具在构建项目的时候，如果发现了这个字段，会首先使用这个字段指向的文件，如果未定义，则回退到 <code>main</code> 字段指向的文件。</p>
+<p>支持的工具：</p>
+<ul>
+<li><a href="https://github.com/rollup/rollup-plugin-node-resolve" target="_blank" rel="noopener">rollup</a></li>
+<li><a href="https://webpack.js.org/configuration/resolve/#resolve-mainfields" target="_blank" rel="noopener">webpack</a></li>
+</ul>
+<p>详细参考 <a href="https://github.com/rollup/rollup/wiki/pkg.module" target="_blank" rel="noopener">rollup - pkg.module</a>.</p>
+<h3 id="browser"><a href="#browser" class="headerlink" title="browser"></a><code>browser</code></h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  &quot;main&quot;: &quot;.&#x2F;lib&#x2F;main.js&quot;,</span><br><span class="line">  &quot;browser&quot;: &quot;.&#x2F;lib&#x2F;main.b.js&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>指定该模块供浏览器使用的入口文件。</p>
+<p>如果这个字段未定义，则回退到 <code>main</code> 字段指向的文件。</p>
+<p>支持的工具：</p>
+<ul>
+<li><a href="https://github.com/rollup/rollup-plugin-node-resolve" target="_blank" rel="noopener">rollup</a></li>
+<li><a href="https://webpack.js.org/configuration/resolve/#resolve-mainfields" target="_blank" rel="noopener">webpack</a></li>
+<li><a href="https://github.com/browserify/browserify-handbook#browser-field" target="_blank" rel="noopener">browserify</a></li>
+</ul>
+<p>详细参考 <a href="https://github.com/tleunen/babel-plugin-module-resolver/issues/41" target="_blank" rel="noopener">babel-plugin-module-resolver</a>.</p>
+<h3 id="esnext"><a href="#esnext" class="headerlink" title="esnext"></a><code>esnext</code></h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  &quot;main&quot;: &quot;main.js&quot;,</span><br><span class="line">  &quot;esnext&quot;: &quot;main-esnext.js&quot;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"># or</span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line">  &quot;main&quot;: &quot;main.js&quot;,</span><br><span class="line">  &quot;esnext&quot;: &#123;</span><br><span class="line">    &quot;main&quot;: &quot;main-esnext.js&quot;,</span><br><span class="line">    &quot;browser&quot;: &quot;browser-specific-main-esnext.js&quot;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>使用 <code>es</code> 模块化规范，<code>stage 4</code> 特性的源代码。</p>
+<p>详细参考 <a href="http://2ality.com/2017/04/transpiling-dependencies-babel.html" target="_blank" rel="noopener">Transpiling dependencies with Babel</a>, <a href="http://2ality.com/2017/06/pkg-esnext.html" target="_blank" rel="noopener">Delivering untranspiled source code via npm</a>.</p>
+<h3 id="es2015"><a href="#es2015" class="headerlink" title="es2015"></a><code>es2015</code></h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  &quot;main&quot;: &quot;main.js&quot;,</span><br><span class="line">  &quot;es2015&quot;: &quot;main-es2015.js&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><a href="https://github.com/angular/angular" target="_blank" rel="noopener">Angular</a> 定义的未转码的 <code>es6</code> 源码。</p>
+<p>详细参考 <a href="https://docs.google.com/document/d/1CZC2rcpxffTDfRDs6p1cfbmKNLA6x5O-NtkJglDaBVs/edit#" target="_blank" rel="noopener">https://docs.google.com/document/d/1CZC2rcpxffTDfRDs6p1cfbmKNLA6x5O-NtkJglDaBVs/edit#</a>.</p>
+<h3 id="esm"><a href="#esm" class="headerlink" title="esm"></a><code>esm</code></h3><p>详细参考 <a href="https://github.com/nodejs/node-eps/pull/60" target="_blank" rel="noopener">adjusted proposal: ES module “esm”: true package.json flag</a>.</p>
+<h2 id="6-react-native-相关字段"><a href="#6-react-native-相关字段" class="headerlink" title="6. react-native 相关字段"></a>6. <a href="https://github.com/facebook/react-native" target="_blank" rel="noopener">react-native</a> 相关字段</h2><p><a href="https://github.com/facebook/react-native" target="_blank" rel="noopener">react-native</a>: 使用 <a href="https://github.com/facebook/react" target="_blank" rel="noopener">react</a> 组件技术写原生 APP。</p>
+<h3 id="react-native"><a href="#react-native" class="headerlink" title="react-native"></a><code>react-native</code></h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  &quot;main&quot;: &quot;.&#x2F;lib&#x2F;main.js&quot;,</span><br><span class="line">  &quot;react-native&quot;: &quot;.&#x2F;lib&#x2F;main.react-native.js&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>指定该模块供 <code>react-native</code> 使用的入口文件。</p>
+<p>如果这个字段未定义，则回退到 <code>main</code> 字段指向的文件。</p>
+<p><a href="https://github.com/facebook/metro/blob/a29d30327365f3f52652f68d53896355021cc693/packages/metro/src/node-haste/Package.js#L45" target="_blank" rel="noopener">源代码查看</a>.</p>
+<h2 id="7-webpack-相关字段"><a href="#7-webpack-相关字段" class="headerlink" title="7. webpack 相关字段"></a>7. <a href="https://github.com/webpack/webpack" target="_blank" rel="noopener">webpack</a> 相关字段</h2><h3 id="sideEffects"><a href="#sideEffects" class="headerlink" title="sideEffects"></a><code>sideEffects</code></h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  &quot;sideEffects&quot;: true|false</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>声明该模块是否包含 <code>sideEffects</code>（副作用），从而可以为 <code>tree-shaking</code> 提供更大的优化空间。</p>
+<p>详细参考 <a href="https://github.com/webpack/webpack/tree/master/examples/side-effects" target="_blank" rel="noopener">sideEffects example</a>, <a href="https://github.com/rollup/rollup/issues/1293" target="_blank" rel="noopener">proposal for marking functions as pure</a>, <a href="https://www.npmjs.com/package/eslint-plugin-tree-shaking" target="_blank" rel="noopener">eslint-plugin-tree-shaking</a>.</p>
+<h2 id="8-microbundle-相关字段"><a href="#8-microbundle-相关字段" class="headerlink" title="8. microbundle 相关字段"></a>8. <a href="https://github.com/developit/microbundle" target="_blank" rel="noopener">microbundle</a> 相关字段</h2><p><a href="https://github.com/developit/microbundle" target="_blank" rel="noopener">microbundle</a>: 基于 <a href="https://github.com/rollup/rollup" target="_blank" rel="noopener">rollup</a> 零配置快速打包工具。</p>
+<h3 id="source"><a href="#source" class="headerlink" title="source"></a><code>source</code></h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  &quot;source&quot;： &quot;src&#x2F;index.js&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>源文件入口文件。</p>
+<p>详细参考 <a href="https://github.com/developit/microbundle#specifying-builds-in-packagejson" target="_blank" rel="noopener">Specifying builds in package.json</a>.</p>
+<h3 id="umd-main"><a href="#umd-main" class="headerlink" title="umd:main"></a><code>umd:main</code></h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  &quot;umd:main&quot;： &quot;dist&#x2F;main.umd.js&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><code>umd</code> 模式 <code>bundle</code> 文件。</p>
+<p>详细参考 <a href="https://github.com/developit/microbundle#specifying-builds-in-packagejson" target="_blank" rel="noopener">Specifying builds in package.json</a>.</p>
+<h2 id="8-parcel-相关字段"><a href="#8-parcel-相关字段" class="headerlink" title="8. parcel 相关字段"></a>8. <a href="https://github.com/parcel-bundler/parcel" target="_blank" rel="noopener">parcel</a> 相关字段</h2><p><a href="https://github.com/parcel-bundler/parcel" target="_blank" rel="noopener">parcel</a>: 零配置打包工具。</p>
+<h3 id="source-1"><a href="#source-1" class="headerlink" title="source"></a><code>source</code></h3><p>查看 <a href="https://github.com/parcel-bundler/parcel/issues/1652" target="_blank" rel="noopener">parcel-bundler/parcel#1652</a>.</p>
+<h2 id="9-babel-相关字段"><a href="#9-babel-相关字段" class="headerlink" title="9. babel 相关字段"></a>9. <a href="https://github.com/babel/babel" target="_blank" rel="noopener">babel</a> 相关字段</h2><p><a href="https://github.com/babel/babel" target="_blank" rel="noopener">babel</a>: <code>es6 -&gt; es5</code> 转码器。</p>
+<h3 id="babel"><a href="#babel" class="headerlink" title="babel"></a><code>babel</code></h3><p>配置 <code>babel</code>。</p>
+<h2 id="10-eslint-相关字段"><a href="#10-eslint-相关字段" class="headerlink" title="10. eslint 相关字段"></a>10. <a href="https://github.com/eslint/eslint" target="_blank" rel="noopener">eslint</a> 相关字段</h2><p><a href="https://github.com/eslint/eslint" target="_blank" rel="noopener">eslint</a>: <code>js</code> 代码检查与优化。</p>
+<h3 id="eslintConfig"><a href="#eslintConfig" class="headerlink" title="eslintConfig"></a><code>eslintConfig</code></h3><p>配置 <code>eslint</code>。</p>
+<h2 id="11-jest-相关字段"><a href="#11-jest-相关字段" class="headerlink" title="11. jest 相关字段"></a>11. <a href="https://github.com/facebook/jest" target="_blank" rel="noopener">jest</a> 相关字段</h2><p><a href="https://github.com/facebook/jest" target="_blank" rel="noopener">jest</a>: <code>js</code> 测试库。</p>
+<h3 id="jest"><a href="#jest" class="headerlink" title="jest"></a><code>jest</code></h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  &quot;jest&quot;: &#123;</span><br><span class="line">    &quot;verbose&quot;: true</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>配置 <code>jest</code>。</p>
+<p>详细参考 <a href="https://jest-bot.github.io/jest/docs/configuration.html" target="_blank" rel="noopener">jest docs</a>.</p>
+<h2 id="12-stylelint-相关字段"><a href="#12-stylelint-相关字段" class="headerlink" title="12. stylelint 相关字段"></a>12. <a href="https://github.com/stylelint/stylelint" target="_blank" rel="noopener">stylelint</a> 相关字段</h2><p><a href="https://github.com/stylelint/stylelint" target="_blank" rel="noopener">stylelint</a>: <code>style</code> 代码检查与优化。</p>
+<h3 id="stylelint"><a href="#stylelint" class="headerlink" title="stylelint"></a><code>stylelint</code></h3><p>配置 <code>stylelint</code>。</p>
+<p>详细参考 <a href="https://github.com/stylelint/stylelint/issues/490" target="_blank" rel="noopener">New configuration loader</a>.</p>
+<h2 id="13-ava-相关字段"><a href="#13-ava-相关字段" class="headerlink" title="13. ava 相关字段"></a>13. <a href="https://github.com/avajs/ava" target="_blank" rel="noopener">ava</a> 相关字段</h2><p><a href="https://github.com/avajs/ava" target="_blank" rel="noopener">ava</a>: <code>js</code> 测试库。</p>
+<h3 id="ava"><a href="#ava" class="headerlink" title="ava"></a><code>ava</code></h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  &quot;ava&quot;: &#123;</span><br><span class="line">    &quot;require&quot;: [ &quot;@std&#x2F;esm&quot; ]</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>配置 <code>ava</code>。</p>
+<p>详细参考 <a href="https://github.com/avajs/ava#configuration" target="_blank" rel="noopener">ava configuration</a>.</p>
+<h2 id="14-nyc-相关字段"><a href="#14-nyc-相关字段" class="headerlink" title="14. nyc 相关字段"></a>14. <a href="https://github.com/istanbuljs/nyc" target="_blank" rel="noopener">nyc</a> 相关字段</h2><p><a href="https://github.com/istanbuljs/nyc" target="_blank" rel="noopener">nyc</a>: <a href="https://istanbul.js.org/" target="_blank" rel="noopener">istanbul.js</a> 命令行。</p>
+<h3 id="nyc"><a href="#nyc" class="headerlink" title="nyc"></a><code>nyc</code></h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  &quot;nyc&quot;: &#123;</span><br><span class="line">    &quot;extension&quot;: [&quot;.js&quot;, &quot;.mjs&quot;],</span><br><span class="line">    &quot;require&quot;: [&quot;@std&#x2F;esm&quot;]</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>配置 <code>nyc</code>。</p>
+<p>详细参考 <a href="https://github.com/istanbuljs/nyc#use-with-babel-plugin-istanbul-for-babel-support" target="_blank" rel="noopener">nyc docs</a>.</p>
+<h2 id="15-CommonJS-保留字段"><a href="#15-CommonJS-保留字段" class="headerlink" title="15. CommonJS 保留字段"></a>15. CommonJS 保留字段</h2><p>保留字段: <code>build</code>, <code>default</code>, <code>email</code>, <code>external</code>, <code>files</code>, <code>imports</code>, <code>maintainer</code>, <code>paths</code>, <code>platform</code>, <code>require</code>, <code>summary</code>, <code>test</code>, <code>using</code>, <code>downloads</code>, <code>uid</code>.</p>
+<p>不可用字段: <code>id</code>, <code>type</code>, 以 <code>_</code> 和 <code>$</code> 开头的字段。</p>
+<h2 id="16-Standard-JS-相关字段"><a href="#16-Standard-JS-相关字段" class="headerlink" title="16. Standard JS 相关字段"></a>16. <a href="https://github.com/standard/standard" target="_blank" rel="noopener">Standard JS</a> 相关字段</h2><p><a href="https://github.com/standard/standard" target="_blank" rel="noopener">Standard JS</a>: <code>js</code> 代码检查与优化。</p>
+<h3 id="standard"><a href="#standard" class="headerlink" title="standard"></a><code>standard</code></h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  &quot;standard&quot;: &#123;</span><br><span class="line">    &quot;parser&quot;: &quot;babel-eslint&quot;,</span><br><span class="line">    &quot;ignore&quot;: [</span><br><span class="line">      &quot;**&#x2F;out&#x2F;&quot;,</span><br><span class="line">      &quot;&#x2F;lib&#x2F;select2&#x2F;&quot;,</span><br><span class="line">      &quot;&#x2F;lib&#x2F;ckeditor&#x2F;&quot;,</span><br><span class="line">      &quot;tmp.js&quot;</span><br><span class="line">    ]</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>配置 <code>standard</code>.</p>
+<p>详细参考 <a href="https://standardjs.com/" target="_blank" rel="noopener">https://standardjs.com/</a>.</p>
+<h2 id="17-其他"><a href="#17-其他" class="headerlink" title="17. 其他"></a>17. 其他</h2><h3 id="style"><a href="#style" class="headerlink" title="style"></a><code>style</code></h3><p>声明当前模块包含 <code>style</code> 部分，并指定入口文件。</p>
+<p>支持的工具：</p>
+<ul>
+<li><a href="https://github.com/rotundasoftware/parcelify" target="_blank" rel="noopener">parcelify</a></li>
+<li><a href="https://github.com/Raynos/npm-less" target="_blank" rel="noopener">npm-less</a></li>
+<li><a href="https://github.com/reworkcss/rework-npm" target="_blank" rel="noopener">rework-npm</a></li>
+<li><a href="https://github.com/defunctzombie/npm-css" target="_blank" rel="noopener">npm-css</a></li>
+</ul>
+<p>详细参考 <a href="https://jaketrent.com/post/package-json-style-attribute/" target="_blank" rel="noopener">Package.json “style” Attribute</a>, <a href="https://github.com/cssinjs/istf-spec" target="_blank" rel="noopener">istf-spec</a>.</p>
+<h3 id="less"><a href="#less" class="headerlink" title="less"></a><code>less</code></h3><p>与 <code>style</code> 一样，但是是 <code>less</code> 文件。</p>
+<p>支持的工具：</p>
+<ul>
+<li><a href="https://github.com/Raynos/npm-less" target="_blank" rel="noopener">npm-less</a></li>
+</ul>
+<h2 id="18-更多"><a href="#18-更多" class="headerlink" title="18. 更多"></a>18. 更多</h2><p>参考 <a href="https://github.com/stereobooster/package.json" target="_blank" rel="noopener">package.json fields explained</a>.</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div></div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/assets/img/wepay.jpg" alt="Ma JinHui 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/assets/img/alipay.jpg" alt="Ma JinHui 支付宝"/>
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    深予之 (@senntyou)
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://www.barebear.cn/web-extend/package/" title="package.json 非官方字段集合">http://www.barebear.cn/web-extend/package/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/%E5%89%8D%E7%AB%AF/" rel="tag"># 前端</a>
+          
+            <a href="/tags/npm/" rel="tag"># npm</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/web-extend/react/" rel="next" title="react 前端项目技术选型、开发工具、周边生态">
+                <i class="fa fa-chevron-left"></i> react 前端项目技术选型、开发工具、周边生态
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/assets/img/avatar.jpg"
+                alt="Ma JinHui" />
+            
+              <p class="site-author-name" itemprop="name">Ma JinHui</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">32</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">13</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-yarn-相关字段"><span class="nav-number">1.</span> <span class="nav-text">1. yarn 相关字段</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#flat"><span class="nav-number">1.1.</span> <span class="nav-text">flat</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#resolutions"><span class="nav-number">1.2.</span> <span class="nav-text">resolutions</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-unpkg-相关字段"><span class="nav-number">2.</span> <span class="nav-text">2. unpkg 相关字段</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#unpkg"><span class="nav-number">2.1.</span> <span class="nav-text">unpkg</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-TypeScript-相关字段"><span class="nav-number">3.</span> <span class="nav-text">3. TypeScript 相关字段</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#types-typings"><span class="nav-number">3.1.</span> <span class="nav-text">types, typings</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-browserslist-相关字段"><span class="nav-number">4.</span> <span class="nav-text">4. browserslist 相关字段</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#browserslist"><span class="nav-number">4.1.</span> <span class="nav-text">browserslist</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-发行打包相关字段"><span class="nav-number">5.</span> <span class="nav-text">5. 发行打包相关字段</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#module"><span class="nav-number">5.1.</span> <span class="nav-text">module</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#browser"><span class="nav-number">5.2.</span> <span class="nav-text">browser</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#esnext"><span class="nav-number">5.3.</span> <span class="nav-text">esnext</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#es2015"><span class="nav-number">5.4.</span> <span class="nav-text">es2015</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#esm"><span class="nav-number">5.5.</span> <span class="nav-text">esm</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-react-native-相关字段"><span class="nav-number">6.</span> <span class="nav-text">6. react-native 相关字段</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#react-native"><span class="nav-number">6.1.</span> <span class="nav-text">react-native</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-webpack-相关字段"><span class="nav-number">7.</span> <span class="nav-text">7. webpack 相关字段</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#sideEffects"><span class="nav-number">7.1.</span> <span class="nav-text">sideEffects</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-microbundle-相关字段"><span class="nav-number">8.</span> <span class="nav-text">8. microbundle 相关字段</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#source"><span class="nav-number">8.1.</span> <span class="nav-text">source</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#umd-main"><span class="nav-number">8.2.</span> <span class="nav-text">umd:main</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-parcel-相关字段"><span class="nav-number">9.</span> <span class="nav-text">8. parcel 相关字段</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#source-1"><span class="nav-number">9.1.</span> <span class="nav-text">source</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#9-babel-相关字段"><span class="nav-number">10.</span> <span class="nav-text">9. babel 相关字段</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#babel"><span class="nav-number">10.1.</span> <span class="nav-text">babel</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#10-eslint-相关字段"><span class="nav-number">11.</span> <span class="nav-text">10. eslint 相关字段</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#eslintConfig"><span class="nav-number">11.1.</span> <span class="nav-text">eslintConfig</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#11-jest-相关字段"><span class="nav-number">12.</span> <span class="nav-text">11. jest 相关字段</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#jest"><span class="nav-number">12.1.</span> <span class="nav-text">jest</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#12-stylelint-相关字段"><span class="nav-number">13.</span> <span class="nav-text">12. stylelint 相关字段</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#stylelint"><span class="nav-number">13.1.</span> <span class="nav-text">stylelint</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#13-ava-相关字段"><span class="nav-number">14.</span> <span class="nav-text">13. ava 相关字段</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#ava"><span class="nav-number">14.1.</span> <span class="nav-text">ava</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#14-nyc-相关字段"><span class="nav-number">15.</span> <span class="nav-text">14. nyc 相关字段</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#nyc"><span class="nav-number">15.1.</span> <span class="nav-text">nyc</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#15-CommonJS-保留字段"><span class="nav-number">16.</span> <span class="nav-text">15. CommonJS 保留字段</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#16-Standard-JS-相关字段"><span class="nav-number">17.</span> <span class="nav-text">16. Standard JS 相关字段</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#standard"><span class="nav-number">17.1.</span> <span class="nav-text">standard</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#17-其他"><span class="nav-number">18.</span> <span class="nav-text">17. 其他</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#style"><span class="nav-number">18.1.</span> <span class="nav-text">style</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#less"><span class="nav-number">18.2.</span> <span class="nav-text">less</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#18-更多"><span class="nav-number">19.</span> <span class="nav-text">18. 更多</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">浙ICP备19031752号</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count">45.7k</span>
+  
+</div>
+
+
+
+
+
+
+<!-- 网站运行时间的设置 -->
+<span id="timeDate">载入天数...</span>
+<span id="times">载入时分秒...</span>
+<script>
+    var now = new Date();
+    function createtime() {
+        var grt= new Date("01/08/2020 12:30:32");//此处修改你的建站时间或者网站上线时间
+        now.setTime(now.getTime()+250);
+        days = (now - grt ) / 1000 / 60 / 60 / 24; dnum = Math.floor(days);
+        hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum); hnum = Math.floor(hours);
+        if(String(hnum).length ==1 ){hnum = "0" + hnum;} minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum);
+        mnum = Math.floor(minutes); if(String(mnum).length ==1 ){mnum = "0" + mnum;}
+        seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
+        snum = Math.round(seconds); if(String(snum).length ==1 ){snum = "0" + snum;}
+        document.getElementById("timeDate").innerHTML = "本站已安全运行 "+dnum+" 天 ";
+        document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒";
+    }
+setInterval("createtime()",250);
+</script>
+
+
+        
+<div class="busuanzi-count">
+  <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
