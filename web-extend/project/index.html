@@ -1,0 +1,1336 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/favicon.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/favicon.png?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="前端," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="马金慧的博客" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="前端项目的管理分为两个维度：项目内的管理与多项目之间的管理。 1. 项目内的管理在一个项目内，当有多个开发者一起协作开发时，或者功能越来越多、项目越来越庞大时，保证项目井然有序的进行是相当重要的。 一般会从下面几点来考证一个项目是否管理得很好：  可扩展性：能够很方便、清晰的扩展一个页面、组件、模块 组件化：多个页面之间共用的大块代码可以独立成组件，多个页面、组件之间共用的小块代码可以独立成公共模">
+<meta property="og:type" content="article">
+<meta property="og:title" content="前端项目如何管理">
+<meta property="og:url" content="http://www.barebear.cn/web-extend/project/index.html">
+<meta property="og:site_name" content="马金慧的博客">
+<meta property="og:description" content="前端项目的管理分为两个维度：项目内的管理与多项目之间的管理。 1. 项目内的管理在一个项目内，当有多个开发者一起协作开发时，或者功能越来越多、项目越来越庞大时，保证项目井然有序的进行是相当重要的。 一般会从下面几点来考证一个项目是否管理得很好：  可扩展性：能够很方便、清晰的扩展一个页面、组件、模块 组件化：多个页面之间共用的大块代码可以独立成组件，多个页面、组件之间共用的小块代码可以独立成公共模">
+<meta property="article:published_time" content="2020-02-21T09:32:56.000Z">
+<meta property="article:modified_time" content="2020-02-21T09:17:47.000Z">
+<meta property="article:author" content="Ma JinHui">
+<meta property="article:tag" content="前端">
+<meta name="twitter:card" content="summary">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://www.barebear.cn/web-extend/project/"/>
+
+
+
+
+
+  <title>前端项目如何管理 | 马金慧的博客</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?72ef98efd91761396d14aa2f920ca0c6";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">马金慧的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description">斯人如彩虹，遇上方知有</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.barebear.cn/web-extend/project/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Ma JinHui">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/assets/img/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="马金慧的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">前端项目如何管理</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-02-21T17:32:56+08:00">
+                2020-02-21
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2020-02-21T17:17:47+08:00">
+                2020-02-21
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%89%8D%E7%AB%AF%E6%89%A9%E5%B1%95/" itemprop="url" rel="index">
+                    <span itemprop="name">前端扩展</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            </span>
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  2.6k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  9
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>前端项目的管理分为两个维度：项目内的管理与多项目之间的管理。</p>
+<h2 id="1-项目内的管理"><a href="#1-项目内的管理" class="headerlink" title="1. 项目内的管理"></a>1. 项目内的管理</h2><p>在一个项目内，当有多个开发者一起协作开发时，或者功能越来越多、项目越来越庞大时，保证项目井然有序的进行是相当重要的。</p>
+<p>一般会从下面几点来考证一个项目是否管理得很好：</p>
+<ul>
+<li>可扩展性：能够很方便、清晰的扩展一个页面、组件、模块</li>
+<li>组件化：多个页面之间共用的大块代码可以独立成组件，多个页面、组件之间共用的小块代码可以独立成公共模块</li>
+<li>可阅读性：阅读性良好（包括目录文件结构、代码结构），能够很快捷的找到某个页面、组件的文件，也能快捷的看出项目有哪些页面、组件</li>
+<li>可移植性：能够轻松的对项目架构进行升级，或移植某些页面、组件、模块到其他项目</li>
+<li>可重构性：对某个页面、组件、模块进行重构时，能够保证在重构之后功能不会改变、不会产生新 bug</li>
+<li>开发友好：开发者在开发某一个功能时，能够有比较好的体验（不好的体验比如：多个文件相隔很远）</li>
+<li>协作性：多人协作时，很少产生代码冲突、文件覆盖等问题</li>
+<li>可交接性：当有人要离开项目时，交接给其他人是很方便的</li>
+</ul>
+<a id="more"></a>
+
+<h3 id="1-1-可扩展性"><a href="#1-1-可扩展性" class="headerlink" title="1.1 可扩展性"></a>1.1 可扩展性</h3><p>对于前端项目而言，可扩展性是并不难的，因为很多时候前端的代码、文件分块都是按照页面来的，所以天然就是一块一块的。</p>
+<p>但这里还是要提一下，因为有些开发者不喜欢分块，把应该分块的东西杂揉在一起，比如：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">- src&#x2F;</span><br><span class="line">  - main&#x2F;                    # main 目录</span><br><span class="line">    - css&#x2F;                   # css 集合</span><br><span class="line">      - alpha.css</span><br><span class="line">      - beta.css</span><br><span class="line">      - ...</span><br><span class="line">    - js&#x2F;                    # js 集合</span><br><span class="line">      - alpha.js</span><br><span class="line">      - beta.js</span><br><span class="line">      - ...</span><br><span class="line">    - alpha.html             # alpha 页面</span><br><span class="line">    - beta.html              # beta 页面</span><br><span class="line">    - ...</span><br></pre></td></tr></table></figure>
+
+<p>更好的方式：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">- src&#x2F;</span><br><span class="line">  - main&#x2F;                    # main 目录</span><br><span class="line">    - alpha&#x2F;                 # alpha 页面</span><br><span class="line">      - index.css            # css 入口文件</span><br><span class="line">      - index.js             # js 入口文件</span><br><span class="line">      - index.html           # html 入口文件</span><br><span class="line">      - ...</span><br><span class="line">    - beta&#x2F;                  # beta 页面</span><br><span class="line">      - index.css</span><br><span class="line">      - index.js</span><br><span class="line">      - index.html</span><br><span class="line">      - ...</span><br><span class="line">    - ...</span><br></pre></td></tr></table></figure>
+
+<p>使前端项目具有高可扩展性，一般从目录文件结构入手</p>
+<h3 id="1-2-组件化"><a href="#1-2-组件化" class="headerlink" title="1.2 组件化"></a>1.2 组件化</h3><p>这里的组件化是项目内的组件化，我们可以把多个页面之间共用的大块代码独立成组件，多个页面、组件之间共用的小块代码独立成公共模块。</p>
+<p>这样做的目的是为了提高代码的可重用性，避免重复造轮子。另外，也有利于代码之间的解耦。</p>
+<p>比如：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">- src&#x2F;</span><br><span class="line">  - data&#x2F;                    # 常量、静态数据目录</span><br><span class="line">    - data1.js</span><br><span class="line">    - data2.js</span><br><span class="line">    - ...</span><br><span class="line">  - components&#x2F;              # 组件目录</span><br><span class="line">    - componnet1&#x2F;</span><br><span class="line">    - componnet2&#x2F;</span><br><span class="line">    - ...</span><br><span class="line">  - utils&#x2F;                   # 工具函数目录</span><br><span class="line">    - util1.js</span><br><span class="line">    - util2.js</span><br><span class="line">    - ...</span><br><span class="line">  - ...</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="1-3-可阅读性"><a href="#1-3-可阅读性" class="headerlink" title="1.3 可阅读性"></a>1.3 可阅读性</h3><p>这里的可阅读性有两个方面：目录文件结构、代码结构。</p>
+<h4 id="1-3-1-目录文件结构"><a href="#1-3-1-目录文件结构" class="headerlink" title="1.3.1 目录文件结构"></a>1.3.1 目录文件结构</h4><p>目录文件结构可阅读性的好与否除了跟开发者有关系外，跟项目的搭建者也有很大的关系，因为如果搭建者在最初就定义好整个项目的目录结构，对后期的开发者是一个很好的约束。</p>
+<p>可阅读性比较差的目录文件结构：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">- src&#x2F;</span><br><span class="line">  - css&#x2F;                     # css 集合</span><br><span class="line">    - main&#x2F;                  # main 目录</span><br><span class="line">      - alpha.css</span><br><span class="line">      - beta.css</span><br><span class="line">      - ...</span><br><span class="line">  - js&#x2F;                      # js 集合</span><br><span class="line">    - main&#x2F;                  # main 目录</span><br><span class="line">      - alpha.js</span><br><span class="line">      - beta.js</span><br><span class="line">      - ...</span><br><span class="line">  - html&#x2F;                    # html 集合</span><br><span class="line">    - main&#x2F;                  # main 目录</span><br><span class="line">      - alpha.html           # alpha 页面</span><br><span class="line">      - beta.html            # beta 页面</span><br><span class="line">      - ...</span><br></pre></td></tr></table></figure>
+
+<p>可阅读性比较好的目录文件结构：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">- src&#x2F;</span><br><span class="line">  - main&#x2F;                    # main 目录</span><br><span class="line">    - alpha&#x2F;                 # alpha 页面</span><br><span class="line">      - index.css            # css 入口文件</span><br><span class="line">      - index.js             # js 入口文件</span><br><span class="line">      - index.html           # html 入口文件</span><br><span class="line">      - ...</span><br><span class="line">    - beta&#x2F;                  # beta 页面</span><br><span class="line">      - index.css</span><br><span class="line">      - index.js</span><br><span class="line">      - index.html</span><br><span class="line">      - ...</span><br><span class="line">    - ...</span><br></pre></td></tr></table></figure>
+
+<h4 id="1-3-2-代码结构"><a href="#1-3-2-代码结构" class="headerlink" title="1.3.2 代码结构"></a>1.3.2 代码结构</h4><p>代码结构的可阅读性大部分取决于开发者的水平，但我们可以使用工具帮助开发者书写规范、格式良好的代码。</p>
+<p>主要有下面的工具：</p>
+<ul>
+<li><a href="http://editorconfig.org/" target="_blank" rel="noopener">.editorconfig</a>: 统一每个开发人员的编辑器配置</li>
+<li><a href="https://github.com/eslint/eslint" target="_blank" rel="noopener">eslint</a>: 检查 js 语法（包括 jsx 语法），然后最大程度的矫正不符合规范的代码</li>
+<li><a href="https://github.com/stylelint/stylelint" target="_blank" rel="noopener">stylelint</a>: 检查 css 语法（包括 less, scss 语法），然后最大程度的矫正不符合规范的代码</li>
+<li><a href="https://github.com/prettier/prettier" target="_blank" rel="noopener">prettier</a>: 代码格式优化</li>
+<li><a href="https://github.com/typicode/husky" target="_blank" rel="noopener">husky</a> + <a href="https://github.com/okonet/lint-staged" target="_blank" rel="noopener">lint-staged</a>: 强制开发人员对代码进行检查、自动矫正与优化</li>
+</ul>
+<h3 id="1-4-可移植性"><a href="#1-4-可移植性" class="headerlink" title="1.4 可移植性"></a>1.4 可移植性</h3><p>可能的情况下，让项目具有一定的伸缩性，可以在未来轻松的对项目进行架构升级。</p>
+<p>让项目能够轻松的移植某些页面、组件、模块到其他项目，需要对整个项目代码尽量的解耦与模块化。另外，也与后面会讲到的“项目之间的统一性”有关。</p>
+<h3 id="1-5-可重构性"><a href="#1-5-可重构性" class="headerlink" title="1.5 可重构性"></a>1.5 可重构性</h3><p>对页面、组件的重构是常有的事，但怎样保证在重构之后功能不会改变、不会产生新 bug，这就得靠测试用例了。</p>
+<ul>
+<li>js 模块：<a href="https://github.com/facebook/jest" target="_blank" rel="noopener">jest</a> / <a href="https://github.com/mochajs/mocha" target="_blank" rel="noopener">mocha</a> / <a href="https://github.com/substack/tape" target="_blank" rel="noopener">tape</a> / <a href="https://github.com/avajs/ava" target="_blank" rel="noopener">ava</a></li>
+<li>React 组件：<a href="https://github.com/airbnb/enzyme" target="_blank" rel="noopener">enzyme</a> + <a href="https://github.com/facebook/jest" target="_blank" rel="noopener">jest</a>，另外可以使用 <a href="https://github.com/kentcdodds/react-testing-library" target="_blank" rel="noopener">react-testing-library</a> 代替 <code>react-dom/test-utils</code></li>
+<li>Vue 组件：<a href="https://github.com/vuejs/vue-test-utils" target="_blank" rel="noopener">vue-test-utils</a> + <a href="https://github.com/facebook/jest" target="_blank" rel="noopener">jest</a> / <a href="https://github.com/mochajs/mocha" target="_blank" rel="noopener">mocha</a> / <a href="https://github.com/substack/tape" target="_blank" rel="noopener">tape</a> / <a href="https://github.com/avajs/ava" target="_blank" rel="noopener">ava</a></li>
+</ul>
+<h3 id="1-6-开发友好"><a href="#1-6-开发友好" class="headerlink" title="1.6 开发友好"></a>1.6 开发友好</h3><p>这主要是从目录结构优化着手，比如：</p>
+<p>像下面这种目录结构，如果要编辑一个页面，需要到处找页面相关的文件，编辑器上就会形成一个很长的目录树，一点不友好：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">- src&#x2F;</span><br><span class="line">  - css&#x2F;                     # css 集合</span><br><span class="line">    - main&#x2F;                  # main 目录</span><br><span class="line">      - alpha.css</span><br><span class="line">      - beta.css</span><br><span class="line">      - ...        # 中间有 30 个页面</span><br><span class="line">  - js&#x2F;                      # js 集合</span><br><span class="line">    - main&#x2F;                  # main 目录</span><br><span class="line">      - alpha.js</span><br><span class="line">      - beta.js</span><br><span class="line">      - ...        # 中间有 30 个页面</span><br><span class="line">  - html&#x2F;                    # html 集合</span><br><span class="line">    - main&#x2F;                  # main 目录</span><br><span class="line">      - alpha.html           # alpha 页面</span><br><span class="line">      - beta.html            # beta 页面</span><br><span class="line">      - ...        # 中间有 30 个页面</span><br></pre></td></tr></table></figure>
+
+<p>而像下面这种目录结构，所有的文件都在一个目录下，找文件就很方便，而且很清晰：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">- src&#x2F;</span><br><span class="line">  - main&#x2F;                    # main 目录</span><br><span class="line">    - alpha&#x2F;                 # alpha 页面</span><br><span class="line">      - index.css            # css 入口文件</span><br><span class="line">      - index.js             # js 入口文件</span><br><span class="line">      - index.html           # html 入口文件</span><br><span class="line">      - ...</span><br><span class="line">    - beta&#x2F;                  # beta 页面</span><br><span class="line">      - index.css</span><br><span class="line">      - index.js</span><br><span class="line">      - index.html</span><br><span class="line">      - ...</span><br><span class="line">    - ...</span><br></pre></td></tr></table></figure>
+
+<h3 id="1-7-协作性"><a href="#1-7-协作性" class="headerlink" title="1.7 协作性"></a>1.7 协作性</h3><p>当项目变大、多人协作时，我们就需要管理好哪些是正在开发的代码、哪些是提交测试的代码、哪些是已经上线的代码、如何避免代码冲突与线上新代码被旧代码覆盖等等。</p>
+<p>具体可以参考：<a href="/web-advance/branch">web 项目如何进行 git 多人协作开发</a>。</p>
+<h3 id="1-8-可交接性"><a href="#1-8-可交接性" class="headerlink" title="1.8 可交接性"></a>1.8 可交接性</h3><p>当有人要离开项目时，就需要把他负责的代码交接给别人，但怎么样才能使交接是轻松愉快的？</p>
+<p>那就是文档，包括注释文档、接口文档等。想想，如果没有文档，该怎样交接呢？</p>
+<h2 id="2-多项目之间的管理"><a href="#2-多项目之间的管理" class="headerlink" title="2. 多项目之间的管理"></a>2. 多项目之间的管理</h2><p>多个项目之间，如何管理好项目之间联系，比如共用组件、公共模块等，保证快捷高效开发、不重复造轮子，也是很重要的。</p>
+<p>一般会从下面几点来考证多个项目之间是否管理得很好：</p>
+<ul>
+<li>组件化：多个项目共用的代码应当独立出来，成为一个单独的组件项目</li>
+<li>版本化：组件项目与应用项目都应当版本化管理，特别是组件项目的版本应当符合 <a href="https://semver.org/" target="_blank" rel="noopener">semver</a> 语义化版本规范</li>
+<li>统一性：多个项目之间应当使用相同的技术选型、UI 框架、脚手架、开发工具、构建工具、测试库、目录规范、代码规范等，相同功能应指定使用固定某一个库</li>
+<li>文档化：组件项目一定需要相关的文档，应用项目在必要的时候也要形成相应的文档</li>
+</ul>
+<h3 id="2-1-组件化"><a href="#2-1-组件化" class="headerlink" title="2.1 组件化"></a>2.1 组件化</h3><p>这里的组件化是项目之间的组件化，我们可以把多个项目共用的代码独立出来，成为一个单独的组件项目。</p>
+<p>这样做的目的也是为了提高代码的可重用性，避免重复造轮子。另外，也便于版本化管理组件。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">- project1&#x2F;                  # 项目一</span><br><span class="line">  - package.json</span><br><span class="line">  - src&#x2F;</span><br><span class="line">  - ...</span><br><span class="line"></span><br><span class="line">- project2&#x2F;                  # 项目二</span><br><span class="line">  - package.json</span><br><span class="line">  - src&#x2F;</span><br><span class="line">  - ...</span><br><span class="line"></span><br><span class="line">- component1&#x2F;                # 组件一</span><br><span class="line">  - package.json</span><br><span class="line">  - src&#x2F;</span><br><span class="line">  - dist&#x2F;</span><br><span class="line">  - ...</span><br><span class="line"></span><br><span class="line">- component2&#x2F;                # 组件二</span><br><span class="line">  - package.json</span><br><span class="line">  - src&#x2F;</span><br><span class="line">  - dist&#x2F;</span><br><span class="line">  - ...</span><br></pre></td></tr></table></figure>
+
+<p>在 <code>project1</code> 中使用 <code>component1</code>、<code>component2</code>:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"># package.json</span><br><span class="line">&#123;</span><br><span class="line">  &quot;dependencies&quot;: &#123;</span><br><span class="line">    &quot;component1&quot;: &quot;^0.0.1&quot;,</span><br><span class="line">    &quot;component2&quot;: &quot;^0.0.1&quot;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">import component1 from &#39;component1&#39;;</span><br><span class="line">import component2 from &#39;component2&#39;;</span><br></pre></td></tr></table></figure>
+
+<p>常用组件有：</p>
+<ul>
+<li><code>@yourCompany/utils</code>: 工具类</li>
+<li><code>@yourCompany/shortcut.css</code>: 快捷 css 类</li>
+<li><code>@yourCompany/data</code>: 常用静态数据</li>
+<li>…</li>
+</ul>
+<p>组件化一般会与私有 npm 仓库一起使用。</p>
+<h3 id="2-2-版本化"><a href="#2-2-版本化" class="headerlink" title="2.2 版本化"></a>2.2 版本化</h3><p>如果应用项目使用 npm 来管理依赖，就是版本化管理了。</p>
+<p>组件项目更不用说了，值得提一下的是组件项目的版本号应当符合 <a href="https://semver.org/" target="_blank" rel="noopener">semver</a> 语义化版本规范。</p>
+<blockquote>
+<p>版本格式：主版本号.次版本号.修订号，版本号递增规则如下：</p>
+<ul>
+<li>主版本号：当你做了不兼容的 API 修改，</li>
+<li>次版本号：当你做了向下兼容的功能性新增，</li>
+<li>修订号：当你做了向下兼容的问题修正。</li>
+</ul>
+<p>先行版本号及版本编译元数据可以加到“主版本号.次版本号.修订号”的后面，作为延伸。</p>
+</blockquote>
+<h3 id="2-3-统一性"><a href="#2-3-统一性" class="headerlink" title="2.3 统一性"></a>2.3 统一性</h3><p>多个项目之间应当使用相同的技术选型、UI 框架、脚手架、开发工具、构建工具、测试库、目录规范、代码规范等，相同功能应指定使用固定某一个库。</p>
+<p>这样做的目的是减少项目之间的环境差异，有利于项目之间的代码移植，也更有利于组件化、代码重用。</p>
+<p>可以参考：</p>
+<ul>
+<li><a href="/web-extend/react">react 前端项目技术选型、开发工具、周边生态</a></li>
+<li><a href="/web-extend/vue">vue 前端项目技术选型、开发工具、周边生态</a></li>
+</ul>
+<h3 id="2-4-文档化"><a href="#2-4-文档化" class="headerlink" title="2.4 文档化"></a>2.4 文档化</h3><p>完善的文档，不管是对组件项目还是应用项目，都是很重要的。</p>
+<p>组件项目需要用文档告诉开发者组件怎么用、有哪些接口；应用项目需要用文档来做小组交流、项目交接等。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div></div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/assets/img/wepay.jpg" alt="Ma JinHui 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/assets/img/alipay.jpg" alt="Ma JinHui 支付宝"/>
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    深予之 (@senntyou)
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://www.barebear.cn/web-extend/project/" title="前端项目如何管理">http://www.barebear.cn/web-extend/project/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/%E5%89%8D%E7%AB%AF/" rel="tag"># 前端</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/web-extend/security/" rel="next" title="web 应用常见安全漏洞一览">
+                <i class="fa fa-chevron-left"></i> web 应用常见安全漏洞一览
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/assets/img/avatar.jpg"
+                alt="Ma JinHui" />
+            
+              <p class="site-author-name" itemprop="name">Ma JinHui</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">38</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">13</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-项目内的管理"><span class="nav-number">1.</span> <span class="nav-text">1. 项目内的管理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-可扩展性"><span class="nav-number">1.1.</span> <span class="nav-text">1.1 可扩展性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-组件化"><span class="nav-number">1.2.</span> <span class="nav-text">1.2 组件化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-3-可阅读性"><span class="nav-number">1.3.</span> <span class="nav-text">1.3 可阅读性</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-3-1-目录文件结构"><span class="nav-number">1.3.1.</span> <span class="nav-text">1.3.1 目录文件结构</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-3-2-代码结构"><span class="nav-number">1.3.2.</span> <span class="nav-text">1.3.2 代码结构</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-4-可移植性"><span class="nav-number">1.4.</span> <span class="nav-text">1.4 可移植性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-5-可重构性"><span class="nav-number">1.5.</span> <span class="nav-text">1.5 可重构性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-6-开发友好"><span class="nav-number">1.6.</span> <span class="nav-text">1.6 开发友好</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-7-协作性"><span class="nav-number">1.7.</span> <span class="nav-text">1.7 协作性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-8-可交接性"><span class="nav-number">1.8.</span> <span class="nav-text">1.8 可交接性</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-多项目之间的管理"><span class="nav-number">2.</span> <span class="nav-text">2. 多项目之间的管理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-组件化"><span class="nav-number">2.1.</span> <span class="nav-text">2.1 组件化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-版本化"><span class="nav-number">2.2.</span> <span class="nav-text">2.2 版本化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3-统一性"><span class="nav-number">2.3.</span> <span class="nav-text">2.3 统一性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-4-文档化"><span class="nav-number">2.4.</span> <span class="nav-text">2.4 文档化</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">浙ICP备19031752号</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count">58.4k</span>
+  
+</div>
+
+
+
+
+
+
+<!-- 网站运行时间的设置 -->
+<span id="timeDate">载入天数...</span>
+<span id="times">载入时分秒...</span>
+<script>
+    var now = new Date();
+    function createtime() {
+        var grt= new Date("01/08/2020 12:30:32");//此处修改你的建站时间或者网站上线时间
+        now.setTime(now.getTime()+250);
+        days = (now - grt ) / 1000 / 60 / 60 / 24; dnum = Math.floor(days);
+        hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum); hnum = Math.floor(hours);
+        if(String(hnum).length ==1 ){hnum = "0" + hnum;} minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum);
+        mnum = Math.floor(minutes); if(String(mnum).length ==1 ){mnum = "0" + mnum;}
+        seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
+        snum = Math.round(seconds); if(String(snum).length ==1 ){snum = "0" + snum;}
+        document.getElementById("timeDate").innerHTML = "本站已安全运行 "+dnum+" 天 ";
+        document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒";
+    }
+setInterval("createtime()",250);
+</script>
+
+
+        
+<div class="busuanzi-count">
+  <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
