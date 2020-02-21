@@ -81,14 +81,14 @@
 
 
 
-<meta name="description" content="1. SQL 注入SQL 注入就是通过给 web 应用接口传入一些特殊字符，达到欺骗服务器执行恶意的 SQL 命令。 SQL 注入漏洞属于后端的范畴，但前端也可做体验上的优化。 原因当使用外部不可信任的数据作为参数进行数据库的增、删、改、查时，如果未对外部数据进行过滤，就会产生 SQL 注入漏洞。 比如： 123name &#x3D; &quot;外部输入名称&quot;;sql &#x3D; &amp;">
+<meta name="description" content="1. SQL 注入SQL 注入就是通过给 web 应用接口传入一些特殊字符，达到欺骗服务器执行恶意的 SQL 命令。 SQL 注入漏洞属于后端的范畴，但前端也可做体验上的优化。 原因当使用外部不可信任的数据作为参数进行数据库的增、删、改、查时，如果未对外部数据进行过滤，就会产生 SQL 注入漏洞。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="web 应用常见安全漏洞一览">
 <meta property="og:url" content="http://www.barebear.cn/web-extend/security/index.html">
 <meta property="og:site_name" content="马金慧的博客">
-<meta property="og:description" content="1. SQL 注入SQL 注入就是通过给 web 应用接口传入一些特殊字符，达到欺骗服务器执行恶意的 SQL 命令。 SQL 注入漏洞属于后端的范畴，但前端也可做体验上的优化。 原因当使用外部不可信任的数据作为参数进行数据库的增、删、改、查时，如果未对外部数据进行过滤，就会产生 SQL 注入漏洞。 比如： 123name &#x3D; &quot;外部输入名称&quot;;sql &#x3D; &amp;">
+<meta property="og:description" content="1. SQL 注入SQL 注入就是通过给 web 应用接口传入一些特殊字符，达到欺骗服务器执行恶意的 SQL 命令。 SQL 注入漏洞属于后端的范畴，但前端也可做体验上的优化。 原因当使用外部不可信任的数据作为参数进行数据库的增、删、改、查时，如果未对外部数据进行过滤，就会产生 SQL 注入漏洞。">
 <meta property="article:published_time" content="2020-02-21T09:31:56.000Z">
-<meta property="article:modified_time" content="2020-02-21T09:11:50.000Z">
+<meta property="article:modified_time" content="2020-02-21T09:28:18.000Z">
 <meta property="article:author" content="Ma JinHui">
 <meta property="article:tag" content="前端">
 <meta name="twitter:card" content="summary">
@@ -333,7 +333,7 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2020-02-21T17:11:50+08:00">
+              <time title="更新于" itemprop="dateModified" datetime="2020-02-21T17:28:18+08:00">
                 2020-02-21
               </time>
             
@@ -428,6 +428,8 @@
         <h2 id="1-SQL-注入"><a href="#1-SQL-注入" class="headerlink" title="1. SQL 注入"></a>1. SQL 注入</h2><p>SQL 注入就是通过给 web 应用接口传入一些特殊字符，达到欺骗服务器执行恶意的 SQL 命令。</p>
 <p>SQL 注入漏洞属于后端的范畴，但前端也可做体验上的优化。</p>
 <h3 id="原因"><a href="#原因" class="headerlink" title="原因"></a>原因</h3><p>当使用外部不可信任的数据作为参数进行数据库的增、删、改、查时，如果未对外部数据进行过滤，就会产生 SQL 注入漏洞。</p>
+<a id="more"></a>
+
 <p>比如：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">name &#x3D; &quot;外部输入名称&quot;;</span><br><span class="line"></span><br><span class="line">sql &#x3D; &quot;select * from users where name&#x3D;&quot; + name;</span><br></pre></td></tr></table></figure>
 
@@ -728,7 +730,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">38</span>
+                  <span class="site-state-item-count">39</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -739,7 +741,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-count">7</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -824,7 +826,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">58.4k</span>
+    <span title="Site words total count">59.8k</span>
   
 </div>
 

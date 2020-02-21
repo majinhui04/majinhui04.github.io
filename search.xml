@@ -1,6 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[从 1 到完美，用 node 写一个命令行工具]]></title>
+    <url>%2Fnode%2Fbin%2F</url>
+    
+      <content type="text"><![CDATA[1. package.json 中的 bin 字段现在，不管是前端项目还是 node 项目，一般都会用 npm 做包管理工具，而 package.json 是其相关的配置信息。 对 node 项目而言，模块导出入口文件由 package.json 的 main 字段指定，而如果是要安装到命令行的工具，则是由 package.json 的 bin 字段指定。 1.1 配置单个命令与包名同名1234&#123; &quot;name&quot;: &quot;pro&quot;, &quot;bin&quot;: &quot;bin&#x2F;pro.js&quot;&#125; 这样安装的命令名称就是 pro。 自定义命令名称（与包名不同名）123456&#123; &quot;name&quot;: &quot;pro-cli&quot;, &quot;bin&quot;: &#123; &quot;pro&quot;: &quot;bin&#x2F;pro.js&quot; &#125;&#125; 这样安装的命令名称也是 pro。 1.2 配置多个命令1234567&#123; &quot;name&quot;: &quot;pro-cli&quot;, &quot;bin&quot;: &#123; &quot;pro&quot;: &quot;bin&#x2F;pro.js&quot;, &quot;mini&quot;: &quot;bin&#x2F;mini.js&quot; &#125;&#125; 这样安装就有 pro 与 mini 两个命令。 2. 对应 bin/pro.js 文件的写法123#!&#x2F;usr&#x2F;bin&#x2F;env noderequire(&#39;..&#x2F;lib&#x2F;pro&#39;); 与普通的 js 文件写法一样，只是前面要加上 #!/usr/bin/env node。 这段前缀代码叫 shebang，具体可以参考 Shebang (Unix) - Wikipedia. 3. 安装方式3.1 全局安装1npm i -g pro-cli 这种安装方式可以在命令行全局使用。 123pro devpro build 3.2 本地安装1npm i --save-dev pro-cli 这种安装方式需要配合 npm 一起使用，比如： 1234567891011# package.json&#123; &quot;scripts&quot;: &#123; &quot;dev&quot;: &quot;pro dev&quot;, &quot;build&quot;: &quot;pro build&quot; &#125;&#125;# 使用npm run devnpm run build 4. 选择合适的命令行封装库一般来说，一个命令都会有如下的一些参数： -v, --version 或 -V, --version: 查看版本号 -h, --help: 查看帮助信息 如果完全自己来写的，就会很麻烦，尤其是帮助信息。所以，选择一个好的命令行封装库，能够帮我们省去很多工作。 用的比较多的： commander.js yargs meow 以 commander.js 为例： 4.1 安装1npm install commander --save 4.2 注册1const commander &#x3D; require(&#39;commander&#39;); 注册版本号与描述 123commander .version(&#39;0.0.1&#39;) .description(&#39;A cli application named pro&#39;); 注册参数（非子命令参数） 12345commander .option(&#39;-p, --peppers&#39;, &#39;Add peppers&#39;) .option(&#39;-P, --pineapple&#39;, &#39;Add pineapple&#39;) .option(&#39;-b, --bbq-sauce&#39;, &#39;Add bbq sauce&#39;) .option(&#39;-c, --cheese [type]&#39;, &#39;Add the specified type of cheese [marble]&#39;, &#39;marble&#39;) 注册子命令 123456commander .command(&#39;rm &lt;dir&gt;&#39;) .option(&#39;-r, --recursive&#39;, &#39;Remove recursively&#39;) .action((dir, cmd) &#x3D;&gt; &#123; console.log(&#39;remove &#39; + dir + (cmd.recursive ? &#39; recursively&#39; : &#39;&#39;)) &#125;) 解析 1commander.parse(process.argv); 4.3 使用查看版本号 12345pro -Vpro --version# 打印结果0.0.1 运行 rm 子命令 1pro rm dir 查看帮助（commander 会自动生成） 12345678910111213141516pro -hpro --help# 打印结果Usage: pro [options]A cli application named proOptions: -h, --help output usage information -V, --version output the version number -p, --peppers Add peppers -P, --pineapple Add pineapple -b, --bbq Add bbq sauce -c, --cheese &lt;type&gt; Add the specified type of cheese [marble] -C, --no-cheese You do not want any cheese 更多用法查看 commander.js。 5. 常用的命令行相关工具库5.1 minimist: 解析命令行的参数12var argv &#x3D; require(&#39;minimist&#39;)(process.argv.slice(2));console.dir(argv); 12$ node example&#x2F;parse.js -a beep -b boop&#123; _: [], a: &#39;beep&#39;, b: &#39;boop&#39; &#125; 123456789$ node example&#x2F;parse.js -x 3 -y 4 -n5 -abc --beep&#x3D;boop foo bar baz&#123; _: [ &#39;foo&#39;, &#39;bar&#39;, &#39;baz&#39; ], x: 3, y: 4, n: 5, a: true, b: true, c: true, beep: &#39;boop&#39; &#125; 更多参考 minimist。 5.2 chalk: 让命令行的字符带上颜色 更多参考 chalk。 5.3 Inquirer.js: 让命令行与用户进行交互，如输入、选择等 更多参考 Inquirer.js。 5.4 shelljs: 跨平台 Unix shell 命令 的 node 封装12345678910111213141516171819202122232425var shell &#x3D; require(&#39;shelljs&#39;);if (!shell.which(&#39;git&#39;)) &#123; shell.echo(&#39;Sorry, this script requires git&#39;); shell.exit(1);&#125;&#x2F;&#x2F; Copy files to release dirshell.rm(&#39;-rf&#39;, &#39;out&#x2F;Release&#39;);shell.cp(&#39;-R&#39;, &#39;stuff&#x2F;&#39;, &#39;out&#x2F;Release&#39;);&#x2F;&#x2F; Replace macros in each .js fileshell.cd(&#39;lib&#39;);shell.ls(&#39;*.js&#39;).forEach(function (file) &#123; shell.sed(&#39;-i&#39;, &#39;BUILD_VERSION&#39;, &#39;v0.1.2&#39;, file); shell.sed(&#39;-i&#39;, &#x2F;^.*REMOVE_THIS_LINE.*$&#x2F;, &#39;&#39;, file); shell.sed(&#39;-i&#39;, &#x2F;.*REPLACE_LINE_WITH_MACRO.*\n&#x2F;, shell.cat(&#39;macro.js&#39;), file);&#125;);shell.cd(&#39;..&#39;);&#x2F;&#x2F; Run external tool synchronouslyif (shell.exec(&#39;git commit -am &quot;Auto-commit&quot;&#39;).code !&#x3D;&#x3D; 0) &#123; shell.echo(&#39;Error: Git commit failed&#39;); shell.exit(1);&#125; 更多参考 shelljs。 5.5 blessed-contrib: 命令行图表 更多参考 blessed-contrib。 5.6 cash: 跨平台 linux 命令 的 node 封装与 shelljs 功能差不多。 12const $ &#x3D; require(&#39;cash&#39;);const out &#x3D; $.ls(&#39;.&#39;, &#123;l: true&#125;); 更多参考 cash。 5.7 prompts: 又一个让命令行与用户进行交互的工具与 Inquirer.js 功能差不多。 更多参考 prompts。 5.8 ora: 命令行加载中图标 更多参考 ora。 5.9 progress: 命令行进度条1downloading [&#x3D;&#x3D;&#x3D;&#x3D;&#x3D; ] 39&#x2F;bps 29% 3.7s 更多参考 progress。 5.10 更多更多关于命令行的工具库可以参考 command-line-utilities。 6. 比较常用的命令行 APP命令行相关的应用就很多啦，比如 babel、webpack、rollup、eslint 等，但这些不仅仅是命令行工具。 下面介绍一些纯命令行应用： vtop: 美美的 linux top 命令界面 speed-test: 测试网络链接速度 http-server: 零配置启动一个 http 服务器 fkill-cli: 跨平台 kill 命令 更多纯命令行应用可以参考 command-line-apps。]]></content>
+    
+      <categories>
+        <category>node</category>
+      </categories>
+      <tags>
+        <tag>前端</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[前端项目如何管理]]></title>
     <url>%2Fweb-extend%2Fproject%2F</url>
     
@@ -269,7 +282,7 @@
       <content type="text"><![CDATA[一、源码包安装首先安装wget如果已经安装了可以跳过该步 1yum install -y wget 1、去官网下载和自己系统匹配的文件通过uname -a命令查看到我的系统位数（备注：x86_64表示64位系统， i686 i386表示32位系统)64位Linux v8.11.3下载地址 1wget https:&#x2F;&#x2F;nodejs.org&#x2F;dist&#x2F;v8.11.3&#x2F;node-v8.11.3-linux-x64.tar.xz 2、下载下来的tar解压，然后通过建立软连接变为全局；解压后的文件我这边将名字改为了nodejs，这个解压地方随意（比如/usr/software），只要在建立软连接的时候写正确就可以 123cd /usr/softwaretar xvf node-v8.11.3-linux-x64.tar.xz mv node-v8.11.3-linux-x64 nodejs 3）配置命令 方法一、建立软连接，变为全局 12ln -s /usr/software/nodejs/bin/npm /usr/local/bin/ ln -s /usr/software/nodejs/bin/node /usr/local/bin/ 方法二、配置全局变量(注：Linux 里面是 .bashrc 而 Mac 是 .bash_profile) 1vim ~/.bash_profile 在末尾新增 1export PATH=$PATH:/usr/software/nodejs/bin 保存退出:wq 运行生效 1source ~/.bash_profile 4）最后一步检验nodejs是否已变为全局 1node -v ~/.bash_profile: 每个用户都可使用该文件输入专用于自己使用的shell信息,当用户登录时,该文件仅仅执行一次!默认情况下,他设置一些环境变量,执行用户的.bashrc文件. 二、nvm方式安装1curl https:&#x2F;&#x2F;raw.github.com&#x2F;creationix&#x2F;nvm&#x2F;master&#x2F;install.sh | sh 1wget -qO- https:&#x2F;&#x2F;raw.github.com&#x2F;creationix&#x2F;nvm&#x2F;master&#x2F;install.sh | sh 安装完成后，执行下列命令即可安装 Node.js。 1nvm install stable 12node -vnpm -v 三、yum方式1curl -sL https:&#x2F;&#x2F;rpm.nodesource.com&#x2F;setup_10.x | bash - 1yum install -y nodejs 12node -vnpm -v]]></content>
     
       <categories>
-        <category>周边</category>
+        <category>node</category>
       </categories>
       <tags>
         <tag>node</tag>
@@ -283,7 +296,7 @@
       <content type="text"><![CDATA[下载nodejs访问nodejs官网（https://nodejs.org/en/）选择合适，我选择是mac的 安装双击刚下载的.pkg文件，打开之后按照步骤默认安装就行 安装完成之后肯定要检查的，打开终端，分别输入 : 12node-v npm -v 由于node安装的时候就自带npm了。如果出现版本信息，就说明安装成功。 修改全局安装权限1sudo chmod -R 777 &#x2F;usr&#x2F;local&#x2F;lib&#x2F;node_modules&#x2F;]]></content>
     
       <categories>
-        <category>周边</category>
+        <category>node</category>
       </categories>
       <tags>
         <tag>node</tag>
@@ -296,7 +309,7 @@
       <content type="text"><![CDATA[一、安装环境1、本机系统：Windows 10 Pro（64位）2、Node.js：v6.9.2LTS（64位） 二、安装Node.js步骤1、下载对应你系统的Node.js版本: https://nodejs.org/en/download/2、选安装目录进行安装3、环境配置4、测试 三、前期准备1、Node.js简介简单的说 Node.js 就是运行在服务端的 JavaScript。Node.js 是一个基于 Chrome V8 引擎的 JavaScript 运行环境。Node.js 使用了一个事件驱动、非阻塞式 I/O 的模型，使其轻量又高效。Node.js 的包管理器 npm，是全球最大的开源库生态系统。2、下载Node.js打开官网下载链接:https://nodejs.org/en/download/我这里下载的是node-v6.9.2-x64.msi,如下图： 开始安装 四、测试在键盘按下【win+R】键，输入cmd，然后回车，打开cmd窗口查看版本,如果正常显示则成功了 1node -v]]></content>
     
       <categories>
-        <category>周边</category>
+        <category>node</category>
       </categories>
       <tags>
         <tag>npm</tag>
